@@ -8,7 +8,7 @@
 /tmp
 /out-tsc
 /uploads
-
+package-lock.json
 
 # Only exists if Bazel was run
 /bazel-out

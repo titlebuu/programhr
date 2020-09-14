@@ -4,35 +4,21 @@
             "exec_mode": "cluster",
             "instances": 1,
             "script": "build/src/server.js",
-            "name": "CARS-2-HANS",
+            "name": "PROGRAM-HR",
             "interpreter": "node",
             "env": {
                 "NODE_ENV": "development",
                 "DOMAIN": "http://www.",
                 "HOST": "localhost",
                 "TIMEZONE": "+07:00",
-                "PORT": 4000,
-                "TIMEOUT": 60000,
-                "FILE_PATH": "./uploads",
-                "EMAIL": {
-                    "link_otp": "/verify/otp/",
-                    "link_change_password": "/verify/change-password/",
-                    "email_from": "wutdy@wdcsingwee.com",
-                    "option": {
-                        "host": "smtp.wdcsingwee.com",
-                        "secure": false,
-                        "auth": {
-                            "user": "wutdy@wdcsingwee.com",
-                            "pass": "excJJHx7"
-                        },
-                        "tls": {
-                            "rejectUnauthorized": false
-                        }
-                    }
-                }
+                "PORT": 4000
             },
-            "env_iot": {
-                "NODE_ENV": "iot"
+            "env_product": {
+                "NODE_ENV": "product",
+                "DOMAIN": "http://www.",
+                "HOST": "localhost",
+                "TIMEZONE": "+07:00",
+                "PORT": 80
             }
         }
     ]
