@@ -8,6 +8,7 @@ export class RouteReview {
 
     constructor() {
         this.router.get('/api/listdata', (req: Request, res: Response) => {
+            debugger
             this.handler.listdata(req, res);
         });
     }
