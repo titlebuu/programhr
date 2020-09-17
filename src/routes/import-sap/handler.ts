@@ -7,7 +7,7 @@ export default class Handler {
 
     public listdata = async (req: Request, res: Response) => {
         debugger
-        const response = await this.service.getEmployee();
+        const response = await this.service.getEmployee(req.query.date1,req.query.date2);
         res.status(200).send(response);
     }
     // (req.query.date1,req.query.date2)
