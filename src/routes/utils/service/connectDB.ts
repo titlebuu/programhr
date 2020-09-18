@@ -9,20 +9,21 @@ export class ServiceMssql {
             var sql = require("mssql");
 
             // config for your database
-            var config = {
-                user: 'sa1',
-                password: 'password@2',
-                server: 'PTF-SIRANEE',
-                database: 'HR_Time_Access',
-                options: {
-                    encrypt: false
-                }
-            };
+            // var config = {
+            //     user: 'sa1',
+            //     password: 'password@2',
+            //     server: 'PTF-SIRANEE',
+            //     database: 'HR_Time_Access',
+            //     options: {
+            //         encrypt: false
+            //     }
+            // };
 
             // connect to your database
-            sql.connect(config, function (err) {
+            sql.connect(databaseConfig, function (err) {
                 if (err) console.log(err);
                 var request = new sql.Request();
+                debugger
                 console.log(query);
                 request.query(query, function (err, recordset) {
                     if (err) reject(err)

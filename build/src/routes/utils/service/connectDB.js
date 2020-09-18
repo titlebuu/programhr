@@ -11,26 +11,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServiceMssql = void 0;
 ;
+const database_config_1 = require("../../../../configs/database-config");
 class ServiceMssql {
     constructor() {
         this.query = (query) => __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
                 var sql = require("mssql");
                 // config for your database
-                var config = {
-                    user: 'sa1',
-                    password: 'password@2',
-                    server: 'PTF-SIRANEE',
-                    database: 'HR_Time_Access',
-                    options: {
-                        encrypt: false
-                    }
-                };
+                // var config = {
+                //     user: 'sa1',
+                //     password: 'password@2',
+                //     server: 'PTF-SIRANEE',
+                //     database: 'HR_Time_Access',
+                //     options: {
+                //         encrypt: false
+                //     }
+                // };
                 // connect to your database
-                sql.connect(config, function (err) {
+                sql.connect(database_config_1.databaseConfig, function (err) {
                     if (err)
                         console.log(err);
                     var request = new sql.Request();
+                    debugger;
                     console.log(query);
                     request.query(query, function (err, recordset) {
                         if (err)

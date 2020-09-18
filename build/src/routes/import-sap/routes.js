@@ -8,7 +8,6 @@ class RouteReview {
         this.router = express.Router();
         this.handler = new handler_1.default();
         this.router.get('/api/listdata', (req, res) => {
-            debugger;
             this.handler.listdata(req, res);
         });
     }

@@ -1,9 +1,10 @@
 import { ServiceMssql } from "../utils/service/connectDB";
+import { DateWhere } from "./interface";
 
 export default class Service {
   serviceMssql: ServiceMssql = new ServiceMssql();
 
-  public getEmployee = async (date1: any , date2: any ) => {
+  public getEmployee = async (date1: DateWhere, date2: DateWhere) => {
     // (date1: any, date2: any)
     debugger
     try {
