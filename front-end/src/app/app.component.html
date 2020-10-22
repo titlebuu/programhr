@@ -1,0 +1,15 @@
+<button (click)="test12()">Sumit</button>
+<table>
+    <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+    </tr>
+    <tr *ngFor="let item of data; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.ID_EMP}}</td>
+        <td>{{item.JOB_NO}}</td>
+    </tr>
+</table>
+
+<router-outlet></router-outlet>

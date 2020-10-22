@@ -5,7 +5,7 @@ const app_1 = require("./app");
 const routes_1 = require("./routes/import-sap/routes");
 const config = {
     HOST: process.env.HOST || 'localhost',
-    PORT: process.env.PORT || 4200
+    PORT: process.env.PORT || 5000
 };
 const app = new app_1.default({
     port: +config.PORT,

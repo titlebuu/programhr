@@ -8,7 +8,6 @@ export default class Handler {
     public listdata = async (req: Request, res: Response) => {
         const response = await this.service.getEmployee(req.query.date1,req.query.date2);
         res.status(200).send(response);
-        debugger
     }
     // (req.query.date1,req.query.date2)
 }

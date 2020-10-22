@@ -4,7 +4,7 @@ import { RouteReview } from "./routes/import-sap/routes";
 
 const config = {
     HOST: process.env.HOST || 'localhost',
-    PORT: process.env.PORT || 4200
+    PORT: process.env.PORT || 5000
 }
 
 const app = new App({

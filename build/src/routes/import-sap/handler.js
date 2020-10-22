@@ -17,7 +17,6 @@ class Handler {
         this.listdata = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const response = yield this.service.getEmployee(req.query.date1, req.query.date2);
             res.status(200).send(response);
-            debugger;
         });
         // (req.query.date1,req.query.date2)
     }

@@ -5,8 +5,6 @@ export default class Service {
   serviceMssql: ServiceMssql = new ServiceMssql();
 
   public getEmployee = async (date1: DateWhere, date2: DateWhere) => {
-    // (date1: any, date2: any)
-    debugger
     try {
       const response = await this.serviceMssql.query(`select AEJ.ID_EMP,AEJ.JOB_NO,AEJ.Cost_Code,CONVERT(VARCHAR(8),AEJ.Date_ACC,112) 'Date (YYYYMMDD)',AEJ.AttendanceType,AEJ.Houre
       from (select  EJ.ID_EMP,EJ.JOB_NO,EJ.Cost_Code,EJ.Date_ACC,
@@ -57,12 +55,10 @@ export default class Service {
       from (select E.ID_EMP,E.OT,J.Date_ACC,J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
           from EmployeeTable E LEFT Join JOB_COST J
           ON E.ID_EMP = J.ID_EMP) EJ) AEJ
-  where  AEJ.AttendanceType is not null and AEJ.Date_ACC between ${date1} and ${date2}
+  where  AEJ.AttendanceType is not null and AEJ.Date_ACC between '${date1}' and '${date2}'
   ORDER BY AEJ.ID_EMP`);
-  
       return response;
     } catch (error) {
-      console.log('error ............', error);
       throw error;
     }
   }

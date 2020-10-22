@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements OnInit {
+  title = 'front-end';
+  data: any;
+  constructor(private http: HttpClient) {
+
+  }
+
+  ngOnInit(): void {
+    this.test12();
+  }
+
+  async test12(): Promise<any> {
+    console.log('test12โ');
+    this.data = await this.query('/api/listdata', {
+      date1: '2019-10-11',
+      date2: '2019-10-12'
+    });
+  }
+
+  query(url: string, params?: any): Promise<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      params: params || {}
+    };
+    return this.http.get(url, httpOptions).toPromise().then(response => {
+      return response;
+    }).catch((err) => {
+      throw err;
+    });
+  }
+}
