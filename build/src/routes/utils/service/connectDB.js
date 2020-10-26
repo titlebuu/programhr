@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ServiceMssql = void 0;
 ;
 const database_config_1 = require("../../../../configs/database-config");
 class ServiceMssql {
@@ -38,7 +37,15 @@ class ServiceMssql {
                     request.query(sql, function (err, recordset) {
                         if (err)
                             reject(err);
-                        resolve(recordset.recordset);
+                        if (recordset &&
+                            recordset.recordset &&
+                            recordset.recordset.length &&
+                            recordset.recordset.length > 0) {
+                            resolve(recordset.recordset);
+                        }
+                        else {
+                            resolve([]);
+                        }
                     });
                 });
                 // make sure that any items are correctly URL encoded in the connection string

@@ -27,7 +27,16 @@ export class ServiceMssql {
                 console.log(sql);
                 request.query(sql, function (err, recordset) {
                     if (err) reject(err)
-                    resolve(recordset.recordset);
+                    if (
+                        recordset &&
+                        recordset.recordset &&
+                        recordset.recordset.length &&
+                        recordset.recordset.length > 0
+                    ) {
+                        resolve(recordset.recordset);
+                    } else {
+                        resolve([])
+                    }
                 });
             });
 
