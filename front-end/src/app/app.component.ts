@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   async test12(): Promise<any> {
-    console.log('test12โ');
+    console.log('test12');
     this.data = await this.query('/api/listdata', {
       date1: '2019-10-11',
       date2: '2019-10-12'

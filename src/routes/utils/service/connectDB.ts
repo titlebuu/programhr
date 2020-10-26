@@ -16,7 +16,7 @@ export class ServiceMssql {
                 server: '10.14.2.208',
                 database: 'HR_Time_Access',
                 options: {
-                    encrypt: false
+                    encrypt: false,
                 }
             };
 
@@ -29,7 +29,7 @@ export class ServiceMssql {
                     if (err) reject(err)
                     resolve(recordset.recordset);
                 });
-            })
+            });
 
 
 

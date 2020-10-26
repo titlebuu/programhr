@@ -13,7 +13,7 @@ interface option {
 export const databaseConfig: DatabaseConfig = {
   user: 'sa1',
   password: 'password@2',
-  server: 'PTF-SIRANEE',
+  server: '10.14.2.208',
   database: 'HR_Time_Access',
   options: {
     encrypt: false
