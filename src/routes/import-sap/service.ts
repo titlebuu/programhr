@@ -14,7 +14,7 @@ export default class Service {
       const data = [];
       response.forEach(element => {
 
-        
+
         // CASE ST1
         if (element.ST1 > 0) {
           data.push({
@@ -26,9 +26,8 @@ export default class Service {
             Houre: element.ST1,
           })
         }
-
-        if (element.OT1_5 > 0 && element.OT === 'Allow') {
-          debugger
+        // CASE OT1
+        if (element.OT1 > 0 && element.OT === 'Allow') {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
@@ -39,21 +38,88 @@ export default class Service {
           })
         }
 
+        if (element.OT1 > 0 && element.OT === 'Full') {
+          data.push({
+            ID_EMP: element.ID_EMP,
+            JOB_NO: element.JOB_NO,
+            Cost_code: element.Cost_Code,
+            Date_ACC: element.Date_ACC,
+            AttendanceType: '0802',
+            Houre: element.OT1,
+          })
+        }
+
+        // CASE OT1.5
+        if (element.OT1_5 > 0 && element.OT === 'Allow') {
+          data.push({
+            ID_EMP: element.ID_EMP,
+            JOB_NO: element.JOB_NO,
+            Cost_code: element.Cost_Code,
+            Date_ACC: element.Date_ACC,
+            AttendanceType: '0804',
+            Houre: element.OT1_5,
+          })
+        }
+
         if (element.OT1_5 > 0 && element.OT === 'Full') {
-          debugger
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
             Cost_code: element.Cost_Code,
             Date_ACC: element.Date_ACC,
             AttendanceType: '0801',
-            Houre: element.OT1,
+            Houre: element.OT1_5,
+          })
+        }
+
+        // CASE OT2
+        if (element.OT2 > 0 && element.OT === 'Allow') {
+          data.push({
+            ID_EMP: element.ID_EMP,
+            JOB_NO: element.JOB_NO,
+            Cost_code: element.Cost_Code,
+            Date_ACC: element.Date_ACC,
+            AttendanceType: '0804',
+            Houre: element.OT2,
+          })
+        }
+
+        if (element.OT2 > 0 && element.OT === 'Full') {
+          data.push({
+            ID_EMP: element.ID_EMP,
+            JOB_NO: element.JOB_NO,
+            Cost_code: element.Cost_Code,
+            Date_ACC: element.Date_ACC,
+            AttendanceType: '0803',
+            Houre: element.OT2,
+          })
+        }
+
+        // CASE OT3
+        if (element.OT3 > 0 && element.OT === 'Allow') {
+          data.push({
+            ID_EMP: element.ID_EMP,
+            JOB_NO: element.JOB_NO,
+            Cost_code: element.Cost_Code,
+            Date_ACC: element.Date_ACC,
+            AttendanceType: '0804',
+            Houre: element.OT2,
+          })
+        }
+
+        if (element.OT3 > 0 && element.OT === 'Full') {
+          data.push({
+            ID_EMP: element.ID_EMP,
+            JOB_NO: element.JOB_NO,
+            Cost_code: element.Cost_Code,
+            Date_ACC: element.Date_ACC,
+            AttendanceType: '0805',
+            Houre: element.OT3,
           })
         }
 
       });
-      debugger
-      return response;
+      return data;
     } catch (error) {
       throw error;
     }

@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
   async test12(): Promise<any> {
     console.log('test12');
     this.data = await this.query('/api/listdata', {
-      date1: '2019-10-11',
-      date2: '2019-10-12'
+      date1: '2020-09-02',
+      date2: '2020-09-03'
     });
   }
 

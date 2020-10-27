@@ -1,14 +1,22 @@
 <button (click)="test12()">Sumit</button>
 <table>
     <tr>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
+        <th>NO</th>
+        <th>Employee ID</th>
+        <th>Project ID</th>
+        <th>Activity Sequence No</th>
+        <th>Date(YYYYMMDD)</th>
+        <th>Attendance Type</th>
+        <th>Hours</th>
     </tr>
     <tr *ngFor="let item of data; let i=index">
         <td>{{i+1}}</td>
         <td>{{item.ID_EMP}}</td>
         <td>{{item.JOB_NO}}</td>
+        <td>{{item.Cost_code}}</td>
+        <td>{{item.Date_ACC}}</td>
+        <td>{{item.AttendanceType}}</td>
+        <td>{{item.Houre}}</td>
     </tr>
 </table>
 
