@@ -15,7 +15,7 @@ class Service {
         this.serviceMssql = new connectDB_1.ServiceMssql();
         this.getEmployee = (date1, date2) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.serviceMssql.query(`select E.ID_EMP,E.OT,J.Date_ACC,J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
+                const response = yield this.serviceMssql.query(`select E.ID_EMP,E.OT,CONVERT(VARCHAR(8),J.Date_ACC,112) 'Date_ACC',J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
       from EmployeeTable E LEFT Join JOB_COST J
       ON E.ID_EMP = J.ID_EMP
       where  J.Date_ACC between '${date1}' and '${date2}'`);

@@ -7,7 +7,7 @@ export default class Service {
 
   public getEmployee = async (date1: DateWhere, date2: DateWhere) => {
     try {
-      const response: any = await this.serviceMssql.query(`select E.ID_EMP,E.OT,J.Date_ACC,J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
+      const response: any = await this.serviceMssql.query(`select E.ID_EMP,E.OT,CONVERT(VARCHAR(8),J.Date_ACC,112) 'Date_ACC',J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
       from EmployeeTable E LEFT Join JOB_COST J
       ON E.ID_EMP = J.ID_EMP
       where  J.Date_ACC between '${date1}' and '${date2}'`);
