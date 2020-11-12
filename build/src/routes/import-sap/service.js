@@ -15,10 +15,37 @@ class Service {
         this.serviceMssql = new connectDB_1.ServiceMssql();
         this.getEmployee = (date1, date2) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.serviceMssql.query(`select E.ID_EMP,E.OT,CONVERT(VARCHAR(8),J.Date_ACC,112) 'Date_ACC',J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
-      from EmployeeTable E LEFT Join JOB_COST J
-      ON E.ID_EMP = J.ID_EMP
-      where  J.Date_ACC between '${date1}' and '${date2}'`);
+                const response = yield this.serviceMssql.query(`select ojc.ID_EMP,ojc.OT,CONVERT(VARCHAR(8),ojc.Date_ACC,112) 'Date_ACC',ojc.JOB_NO,
+      case
+        when ojc.Cost_Code = '7410' then '80102001'
+        when ojc.Cost_Code = '7411' then '80102001'
+        when ojc.Cost_Code = '7420' then '80102008'
+        when ojc.Cost_Code = '7570' then '80102015'
+        when ojc.Cost_Code = '7944' then '81000006'
+        else ojc.Cost_Code
+        end as Cost_Code,ojc.ST1,ojc.OT1,ojc.OT1_5,ojc.OT2,ojc.OT3
+      from (select oj.ID_EMP,oj.OT,oj.Date_ACC,
+          case
+            when oj.JOB_NO = '10T' then 'G11200003'
+            when oj.JOB_NO = '20T' then 'G11200002'
+            when oj.JOB_NO = '30T' then 'G11200009'
+            when oj.JOB_NO = '40T' then 'G11200006'
+            when oj.JOB_NO = '51T' then 'G11200001'
+            when oj.JOB_NO = '53T' then 'G11200011'
+            when oj.JOB_NO = '55T' then 'G11200014'
+            when oj.JOB_NO = '57T' then 'G11200013'
+            when oj.JOB_NO = '58T' then 'G11200010'
+            when oj.JOB_NO = '59T' then 'G11200008'
+            when oj.JOB_NO = '60T' then 'G11200004'
+            when oj.JOB_NO = '82T' then 'G11200012'
+            when oj.JOB_NO = '85T' then 'G11200010'
+            when oj.JOB_NO = '90T' then 'G11200005'
+            when oj.JOB_NO = '99T' then 'G11200015'
+            else oj.JOB_NO
+            end as JOB_NO,oj.Cost_Code,oj.ST1,oj.OT1,oj.OT1_5,oj.OT2,oj.OT3
+            from (select E.ID_EMP,E.OT,J.Date_ACC,J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
+            from EmployeeTable E LEFT Join JOB_COST J ON E.ID_EMP = J.ID_EMP) oj) ojc
+      where  ojc.Date_ACC between '${date1}' and '${date2}'`);
                 const data = [];
                 response.forEach(element => {
                     // CASE ST1
