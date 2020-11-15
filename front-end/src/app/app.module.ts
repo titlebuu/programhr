@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import {FormsModule} from '@angular/forms'; //เพิ่ม
-import { ExcelService } from './excel.service'; //เพิ่ม
+import {FormsModule} from '@angular/forms'; 
+import { ExcelService } from './excel.service'; 
+import {AccordionModule} from 'primeng/accordion';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ExcelService } from './excel.service'; //เพิ่ม
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule //เพิ่ม
+    FormsModule,
+    AccordionModule
   ],
   providers: [ExcelService],
   bootstrap: [AppComponent]

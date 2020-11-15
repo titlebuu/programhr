@@ -1,35 +1,33 @@
-<form>
-    <div class="form-inline">
-Start Date : <input type="date" required="required" >
-To : <input type="date" required="required" >
-    <button (click)="test12()" class="button-sumit">Sumit</button> 
-        
+<div class="form-inline">
+    Start Date : <input  [(ngModel)]="start_date" type="date" required="required">
+    To : <input [(ngModel)]="to_date" type="date" required="required">
+    <button (click)="test12()" class="button-sumit">Sumit</button>
 </div>
-</form>
+
 <br>
 <table class="center">
-<thead>
-    <tr>
-        <th>NO</th>
-        <th>Employee ID</th>
-        <th>Project ID</th>
-        <th>Activity Sequence No</th>
-        <th>Date(YYYYMMDD)</th>
-        <th>Attendance Type</th>
-        <th>Hours</th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let item of data; let i=index">
-        <td>{{i+1}}</td>
-        <td>{{item.ID_EMP}}</td>
-        <td>{{item.JOB_NO}}</td>
-        <td>{{item.Cost_code}}</td>
-        <td>{{item.Date_ACC}}</td>
-        <td>{{item.AttendanceType}}</td>
-        <td>{{item.Houre}}</td>
-    </tr>
-</tbody>
+    <thead>
+        <tr>
+            <th>NO</th>
+            <th>Employee ID</th>
+            <th>Project ID</th>
+            <th>Activity Sequence No</th>
+            <th>Date(YYYYMMDD)</th>
+            <th>Attendance Type</th>
+            <th>Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{item.ID_EMP}}</td>
+            <td>{{item.JOB_NO}}</td>
+            <td [ngClass]="{'msg-red': red(item.Cost_code)}">{{item.Cost_code}}</td>
+            <td>{{item.Date_ACC}}</td>
+            <td>{{item.AttendanceType}}</td>
+            <td>{{item.Houre}}</td>
+        </tr>
+    </tbody>
 </table>
 <br>
 <button (click)="downloadExcel()" class="button">Dowload File</button>

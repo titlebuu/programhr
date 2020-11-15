@@ -1,6 +1,7 @@
 import { and } from "sequelize";
 import { ServiceMssql } from "../utils/service/connectDB";
 import { DateWhere } from "./interface";
+import { ASN } from './interface';
 
 export default class Service {
   serviceMssql: ServiceMssql = new ServiceMssql();
@@ -38,16 +39,17 @@ export default class Service {
             from (select E.ID_EMP,E.OT,J.Date_ACC,J.JOB_NO,J.Cost_Code,J.ST1,J.OT1,J.OT1_5,J.OT2,J.OT3 
             from EmployeeTable E LEFT Join JOB_COST J ON E.ID_EMP = J.ID_EMP) oj) ojc
       where  ojc.Date_ACC between '${date1}' and '${date2}'`);
+      const response2: any = await this.serviceMssql.query(`SELECT ats_no, wbs, activity_sequence_number, description, status  FROM Activity_Sequence_Number`);
       const data = [];
       response.forEach(element => {
-
-
+        const wbs = `${element.JOB_NO}.${element.Cost_Code}`
         // CASE ST1
         if (element.ST1 > 0) {
+
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0800',
             Houre: element.ST1,
@@ -58,7 +60,7 @@ export default class Service {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0804',
             Houre: element.OT1,
@@ -69,7 +71,7 @@ export default class Service {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0802',
             Houre: element.OT1,
@@ -81,7 +83,7 @@ export default class Service {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0804',
             Houre: element.OT1_5,
@@ -92,7 +94,7 @@ export default class Service {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0801',
             Houre: element.OT1_5,
@@ -104,7 +106,7 @@ export default class Service {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0804',
             Houre: element.OT2,
@@ -115,7 +117,7 @@ export default class Service {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0803',
             Houre: element.OT2,
@@ -124,10 +126,11 @@ export default class Service {
 
         // CASE OT3
         if (element.OT3 > 0 && element.OT === 'Allow') {
+
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0804',
             Houre: element.OT2,
@@ -138,7 +141,7 @@ export default class Service {
           data.push({
             ID_EMP: element.ID_EMP,
             JOB_NO: element.JOB_NO,
-            Cost_code: element.Cost_Code,
+            Cost_code: this.report(wbs, response2),
             Date_ACC: element.Date_ACC,
             AttendanceType: '0805',
             Houre: element.OT3,
@@ -150,6 +153,18 @@ export default class Service {
     } catch (error) {
       throw error;
     }
+  }
+
+  report(code_wbs: any, ActivitySequenceNumber: Array<ASN>) {
+    const result = ActivitySequenceNumber.find((ele) => ele.wbs === code_wbs)
+    // console.log(code_wbs + ' - ' + result); chaeck log
+
+    if (result && result.activity_sequence_number) {
+      return result.activity_sequence_number;
+    } else {
+      return 'no ' + code_wbs;
+    }
+    // reuturn result && result.activity_sequence_number || 'no ' + code_wbs; เขียน if อีกแบบ
   }
 }
 
