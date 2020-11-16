@@ -11,6 +11,7 @@ class App {
         this.port = appInit.port;
         this.setHeader();
         this.routes(appInit.controllers);
+        this.template();
     }
 
     private setHeader(): void {
@@ -27,6 +28,16 @@ class App {
     private routes(controllers: { forEach: (arg0: (controller: any) => void) => void; }) {
         controllers.forEach(controller => {
             this.app.all("*", controller.router);
+        });
+    }
+
+    private template(): void {
+        const rootPath = __dirname.split('src')[0];
+        this.app.use(express.static(path.join(rootPath, "dist")));
+
+        this.app.use('/*', (req: express.Request, res: express.Response) => {
+            //     res.setHeader("Content-Type", 'text/html; charset=UTF-8');
+            return res.sendFile(path.join(rootPath, "dist/index.html"));
         });
     }
 

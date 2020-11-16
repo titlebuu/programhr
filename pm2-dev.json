@@ -1,24 +1,13 @@
 {
     "apps": [
         {
-            "exec_mode": "cluster",
+            "exec_mode": "fork",
             "instances": 1,
             "script": "build/src/server.js",
-            "name": "PROGRAM-HR",
             "interpreter": "node",
+            "name": "program-rotary",
             "env": {
-                "NODE_ENV": "development",
-                "DOMAIN": "http://www.",
-                "HOST": "localhost",
-                "TIMEZONE": "+07:00",
-                "PORT": 4000
-            },
-            "env_product": {
-                "NODE_ENV": "product",
-                "DOMAIN": "http://www.",
-                "HOST": "localhost",
-                "TIMEZONE": "+07:00",
-                "PORT": 80
+                "NODE_ENV": "dev"
             }
         }
     ]

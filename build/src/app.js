@@ -10,12 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+const path = require("path");
 class App {
     constructor(appInit) {
         this.app = express();
         this.port = appInit.port;
         this.setHeader();
         this.routes(appInit.controllers);
+        this.template();
     }
     setHeader() {
         this.app.use(function (req, res, next) {
@@ -30,6 +32,14 @@ class App {
     routes(controllers) {
         controllers.forEach(controller => {
             this.app.all("*", controller.router);
+        });
+    }
+    template() {
+        const rootPath = __dirname.split('src')[0];
+        this.app.use(express.static(path.join(rootPath, "dist")));
+        this.app.use('/*', (req, res) => {
+            //     res.setHeader("Content-Type", 'text/html; charset=UTF-8');
+            return res.sendFile(path.join(rootPath, "dist/index.html"));
         });
     }
     start() {
