@@ -1,17 +1,20 @@
-<div class="p-field p-col-12 p-md-4">
-    <label for="icon">Icon</label>
-    <p-calendar [(ngModel)]="start_date" [showIcon]="true" inputId="icon"></p-calendar>
-</div>
-
 <div class="form-inline">
-    Start Date : <input  [(ngModel)]="start_date" type="date" required="required">
-    To : <input [(ngModel)]="to_date" type="date" required="required">
-    <button (click)="test12()" class="button-sumit">Sumit</button>
+    <label for="icon">Start Date</label>
+    <p-calendar [(ngModel)]="start_date" [showIcon]="true" inputId="icon"></p-calendar>
+    <label for="icon">To</label>
+    <p-calendar [(ngModel)]="to_date" [showIcon]="true" inputId="icon"></p-calendar>
+    <button (click)="test12()" pButton pRipple type="button" label="Success" class="p-button-success"></button>
 </div>
-
 <br>
-<table class="center">
-    <thead>
+<p-table #dt [columns]="cols" [value]="data">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <button type="button" pButton pRipple icon="pi pi-file-o" (click)="downloadExcel()" class="p-mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
         <tr>
             <th>NO</th>
             <th>Employee ID</th>
@@ -21,10 +24,10 @@
             <th>Attendance Type</th>
             <th>Hours</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of data; let i=index">
-            <td>{{i+1}}</td>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-columns="columns" let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="item">
+            <td>{{rowIndex+1}}</td>
             <td>{{item.ID_EMP}}</td>
             <td>{{item.JOB_NO}}</td>
             <td [ngClass]="{'msg-red': red(item.Cost_code)}">{{item.Cost_code}}</td>
@@ -32,9 +35,9 @@
             <td>{{item.AttendanceType}}</td>
             <td>{{item.Houre}}</td>
         </tr>
-    </tbody>
-</table>
-<br>
+    </ng-template>
+</p-table>
+
 <button (click)="downloadExcel()" class="button">Dowload File</button>
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
