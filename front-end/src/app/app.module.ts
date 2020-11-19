@@ -7,18 +7,25 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
-import { ExcelService } from './excel.service';
+import { ExcelService } from './hr/export/excel.service';
 import { AccordionModule } from 'primeng/accordion';
 import { CalendarModule } from 'primeng/calendar';
 import { FormatdatePipe } from './pipe/formatdate.pipe';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { ExportComponent } from './hr/export/export.component';
+import { EmployeeComponent } from './hr/employee/employee.component';
+import { InputTextModule } from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormatdatePipe
+    FormatdatePipe,
+    ExportComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,10 @@ import { TableModule } from 'primeng/table';
     AccordionModule,
     CalendarModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    InputTextModule,
+    DropdownModule
+
   ],
   providers: [ExcelService],
   bootstrap: [AppComponent]

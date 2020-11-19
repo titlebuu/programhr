@@ -1,0 +1,32 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        5
+    </div>
+    <div class="p-col-12">
+        <div class="p-grid">
+            <div class="p-col-2">
+                2
+            </div>
+            <div class="p-col-8">
+                <h5>ID Employee</h5>
+                <input type="text" pInputText [(ngModel)]="epm_id">
+                <span class="p-ml-2">{{epm_id}}</span>
+                <h5>Name</h5>
+                <input type="text" pInputText [(ngModel)]="name">
+                <span class="p-ml-2">{{name}}</span>
+                <h5>Last name</h5>
+                <input type="text" pInputText [(ngModel)]="lastname">
+                <span class="p-ml-2">{{lastname}}</span>
+                <h5>Gender</h5>
+                <p-dropdown inputId="gender" [options]="genders" [(ngModel)]="selectedGender" placeholder="Select" optionLabel="name"></p-dropdown>
+                <h5>Department</h5>
+                <p-dropdown inputId="department" [options]="dept" [(ngModel)]="selectedDept" placeholder="Select" optionLabel="name"></p-dropdown>
+                <h5>Type OT</h5>
+                <p-dropdown inputId="typeot" [options]="ot" [(ngModel)]="selectedOT" placeholder="Select" optionLabel="name"></p-dropdown>
+                <br>
+                <p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button>
+            </div>
+            <div class="p-col-2">
+                2
+            </div>
+        </div>
