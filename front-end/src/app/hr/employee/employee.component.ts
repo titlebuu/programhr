@@ -9,8 +9,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class EmployeeComponent implements OnInit {
   name: string;
   lastname: string;
-  epm_id: string;
+  emp_id: string;
   selectedGender: any = null;
+  gender:any = null;
   genders: any[] = [
     { name: 'Male', code: 'M' },
     { name: 'Female', value: 'F' }

@@ -16,7 +16,10 @@ import { TableModule } from 'primeng/table';
 import { ExportComponent } from './hr/export/export.component';
 import { EmployeeComponent } from './hr/employee/employee.component';
 import { InputTextModule } from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
+
+
+
 
 
 
@@ -39,6 +42,8 @@ import {DropdownModule} from 'primeng/dropdown';
     TableModule,
     InputTextModule,
     DropdownModule
+   
+
 
   ],
   providers: [ExcelService],
