@@ -11,7 +11,6 @@ export class EmployeeComponent implements OnInit {
   lastname: string;
   emp_id: string;
   selectedGender: any = null;
-  gender:any = null;
   genders: any[] = [
     { name: 'Male', code: 'M' },
     { name: 'Female', value: 'F' }
@@ -42,6 +41,16 @@ export class EmployeeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  async addemployee(): Promise<any> {
+
+    const genders = this.genders;
+    const dept = this.dept;
+    const typeot = this.ot
+
+    this.addemp = await this.query()
+
   }
 
 }
