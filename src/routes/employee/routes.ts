@@ -7,8 +7,8 @@ export class RouteReview {
     private handler: Handler = new Handler();
 
     constructor() {
-        this.router.post('/api/addemployee', (req: Request, res: Response) => {
-            this.handler.listdata(req, res);
+        this.router.post('/api/employee', (req: Request, res: Response) => {
+            this.handler.addemp(req, res);
         });
     }
 }

@@ -20,17 +20,17 @@ class ServiceMssql {
                 var mssql = require("mssql");
                 var _ = require('lodash');
                 // config for your database
-                var config = {
-                    user: 'sa1',
-                    password: 'password@2',
-                    server: '10.14.2.208',
-                    database: 'HR_Time_Access',
-                    options: {
-                        encrypt: false,
-                    }
-                };
+                // var config = {
+                //     user: 'trel_web',
+                //     password: 'password@1',
+                //     server: '10.14.0.105',
+                //     database: 'HR_Time_Access',
+                //     options: {
+                //         encrypt: false,
+                //     }
+                // };
                 // // connect to your database
-                mssql.connect(config, function (err) {
+                mssql.connect(database_config_1.databaseConfig, function (err) {
                     if (err)
                         console.log(err);
                     var request = new mssql.Request();

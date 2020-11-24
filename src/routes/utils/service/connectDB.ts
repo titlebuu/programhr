@@ -9,19 +9,9 @@ export class ServiceMssql {
         return new Promise(async (resolve, reject) => {
             var mssql = require("mssql");
             var _ = require('lodash');
-            // config for your database
-            var config = {
-                user: 'sa1',
-                password: 'password@2',
-                server: '10.14.2.208',
-                database: 'HR_Time_Access',
-                options: {
-                    encrypt: false,
-                }
-            };
 
             // // connect to your database
-            mssql.connect(config, function (err) {
+            mssql.connect(databaseConfig, function (err) {
                 if (err) console.log(err);
                 var request = new mssql.Request();
                 console.log(sql);
