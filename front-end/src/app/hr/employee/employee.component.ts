@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -7,15 +8,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
-  name: string;
-  lastname: string;
-  emp_id: string;
-  selectedGender: any = null;
+  formEmployee = new FormGroup({
+    emp_id: new FormControl(),
+    name: new FormControl(),
+    lastname: new FormControl(),
+    selectedGender: new FormControl(),
+    selectedDept: new FormControl(),
+    selectedOT: new FormControl()
+  });
   genders: any[] = [
     { name: 'Male', code: 'M' },
     { name: 'Female', value: 'F' }
   ];
-  selectedDept: any = null;
   dept: any[] = [
     { name: 'BDP', code: 'BDP' },
     { name: 'BP', value: 'BP' },
@@ -31,7 +35,6 @@ export class EmployeeComponent implements OnInit {
     { name: 'PROC', value: 'PROC' },
     { name: 'PTF', value: 'PTF' }
   ];
-  selectedOT: any = null;
   ot: any[] = [
     { name: 'Allow', code: 'Allow' },
     { name: 'Full', value: 'Full' },
@@ -41,17 +44,19 @@ export class EmployeeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  async addemployee(): Promise<any> {
-
-    const genders = this.genders;
-    const dept = this.dept;
-    const typeot = this.ot
-
-    this.addemp = await this.query()
 
   }
+
+  // async addemployee(): Promise<any> {
+
+  //   const genders = this.genders;
+  //   const dept = this.dept;
+  //   const typeot = this.ot
+
+  //   this.addemp = await this.query()
+
+  // }
+
 
 }
 

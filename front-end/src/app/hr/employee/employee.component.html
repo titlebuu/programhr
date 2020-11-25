@@ -5,52 +5,61 @@
         6
     </div>
     <div class="p-col-12">
+        <!-- <form [formGroup]="formEmployee" > -->
         <div class="p-grid">
             <div class="p-col-3">
                 2
             </div>
-            <div class="p-col-6 bg p-mt-4">
-                <div class="p-fluid p-formgrid p-grid ">
-                    <div class="p-field p-col">
-                        <label for="emp_id" class="font1">ID Employee</label>
-                        <input id="emp_id" type="text" pInputText [(ngModel)]="emp_id" placeholder="ID Employee">
+            <form [formGroup]="formEmployee">
+                <div class="p-col-6 bg p-mt-4">
+
+                    <div class="p-fluid p-formgrid p-grid ">
+
+                        <div class="p-field p-col">
+                            <label for="emp_id" class="font1">ID Employee</label>
+                            <input id="emp_id" type="text" pInputText formControlName="emp_id" placeholder="ID Employee">
+                        </div>
                     </div>
+
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="name" class="font1">Firstname</label>
+                            <input id="name" type="text" pInputText formControlName="name" placeholder="Firstname">
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="lastname" class="font1">Lastname</label>
+                            <input id="lastname" type="text" pInputText formControlName="lastname" placeholder="Lastname">
+                        </div>
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="gender" class="font1">Gender</label>
+                            <p-dropdown inputId="gender" [options]="genders" formControlName="selectedGender"
+                                placeholder="Select" optionLabel="name"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="department" class="font1">Department</label>
+                            <p-dropdown inputId="department" [options]="dept" formControlName="selectedDept"
+                                placeholder="Select" optionLabel="name"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="typeot" class="font1">Type OT</label>
+                            <p-dropdown inputId="typeot" [options]="ot" formControlName="selectedOT" placeholder="Select"
+                                optionLabel="name"></p-dropdown>
+                        </div>
+                    </div>
+                    <br>
+                    <p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button>
                 </div>
-                <div class="p-fluid p-formgrid p-grid">
-                    <div class="p-field p-col">
-                        <label for="name" class="font1">Firstname</label>
-                        <input id="name" type="text" pInputText [(ngModel)]="name" placeholder="Firstname">
-                    </div>
-                    <div class="p-field p-col">
-                        <label for="lastname" class="font1">Lastname</label>
-                        <input id="lastname" type="text" pInputText [(ngModel)]="lastname" placeholder="Lastname">
-                    </div>
-                </div>
-                <div class="p-fluid p-formgrid p-grid">
-                    <div class="p-field p-col">
-                        <label for="gender" class="font1">Gender</label>
-                        <p-dropdown inputId="gender" [options]="genders" [(ngModel)]="selectedGender"
-                            placeholder="Select" optionLabel="name"></p-dropdown>
-                    </div>
-                </div>
-                <div class="p-fluid p-formgrid p-grid">
-                    <div class="p-field p-col">
-                        <label for="department" class="font1">Department</label>
-                        <p-dropdown inputId="department" [options]="dept" [(ngModel)]="selectedDept"
-                            placeholder="Select" optionLabel="name"></p-dropdown>
-                    </div>
-                </div>
-                <div class="p-fluid p-formgrid p-grid">
-                    <div class="p-field p-col">
-                        <label for="typeot" class="font1">Type OT</label>
-                        <p-dropdown inputId="typeot" [options]="ot" [(ngModel)]="selectedOT" placeholder="Select"
-                    optionLabel="name"></p-dropdown>
-                    </div>
-                </div>
-                <br>
-                <p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button>
-            </div>
+            </form>
             <div class="p-col-3">
                 2
             </div>
         </div>
+        <!-- </form> -->
+    </div>
+</div>

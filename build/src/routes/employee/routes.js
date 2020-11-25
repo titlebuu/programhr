@@ -1,13 +1,16 @@
-// import * as express from 'express';
-// import { Request, Response } from 'express';
-// import Handler from './handler';
-// export class RouteReview {
-//     public router = express.Router();
-//     private handler: Handler = new Handler();
-//     constructor() {
-//         this.router.post('/api/addemployee', (req: Request, res: Response) => {
-//             this.handler.listdata(req, res);
-//         });
-//     }
-// }
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const handler_1 = require("./handler");
+class RouteEmployee {
+    constructor() {
+        this.router = express.Router();
+        this.handler = new handler_1.default();
+        this.router.post('/api/employee', (req, res) => {
+            console.log('test');
+            this.handler.addemp(req, res);
+        });
+    }
+}
+exports.RouteEmployee = RouteEmployee;
 //# sourceMappingURL=routes.js.map

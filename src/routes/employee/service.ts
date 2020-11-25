@@ -7,6 +7,6 @@ export default class Service {
     serviceMssql: ServiceMssql = new ServiceMssql();
 
     public addEmployee = async (params: AddEmployee) => {
-        return await module['']
+        
     }
 }

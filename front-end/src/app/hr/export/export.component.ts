@@ -60,13 +60,7 @@ export class ExportComponent implements OnInit {
   }
 
   query(url: string, params?: any): Promise<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      params: params || {}
-    };
-    return this.http.get(url, httpOptions).toPromise().then(response => {
+    return this.http.get(url, params).toPromise().then(response => {
       return response;
     }).catch((err) => {
       throw err;

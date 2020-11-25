@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ExcelService } from './hr/export/excel.service';
 import { AccordionModule } from 'primeng/accordion';
 import { CalendarModule } from 'primeng/calendar';
@@ -41,8 +42,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     TableModule,
     InputTextModule,
-    DropdownModule
-   
+    DropdownModule,
+   ReactiveFormsModule
 
 
   ],
