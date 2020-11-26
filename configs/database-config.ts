@@ -7,7 +7,7 @@ export interface DatabaseConfig {
 }
 
 interface option {
-  encrypt: boolean
+  encrypt: boolean,
 }
 
 export const databaseConfig: DatabaseConfig = {
@@ -16,6 +16,6 @@ export const databaseConfig: DatabaseConfig = {
   server: '10.14.0.105',
   database: 'HR_Time_Access',
   options: {
-    encrypt: false
+    encrypt: false 
   }
 };

@@ -10,6 +10,7 @@ class App {
         this.app = express();
         this.port = appInit.port;
         this.setHeader();
+        this.middlewares(appInit.middleWares);
         this.routes(appInit.controllers);
         this.template();
     }
@@ -22,6 +23,12 @@ class App {
             res.setHeader("Access-Control-Allow-Headers", "x-requested-with");
             res.setHeader("X-Frame-Options", "ALLOW");
             next();
+        });
+    }
+
+    private middlewares(middleWares: { forEach: (arg0: (middleWare: any) => void) => void; }) {
+        middleWares.forEach(middleWare => {
+            this.app.use(middleWare);
         });
     }
 

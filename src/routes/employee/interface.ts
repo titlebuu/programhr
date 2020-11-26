@@ -1,5 +1,5 @@
 export interface AddEmployee {
-    ID: string;
+    ID_EMP: string;
     DEPT: string;
     Gender: string;
     Name: string;

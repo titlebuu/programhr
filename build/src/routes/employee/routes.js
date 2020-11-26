@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RouteEmployee = void 0;
 const express = require("express");
 const handler_1 = require("./handler");
 class RouteEmployee {
@@ -7,7 +8,6 @@ class RouteEmployee {
         this.router = express.Router();
         this.handler = new handler_1.default();
         this.router.post('/api/employee', (req, res) => {
-            console.log('test');
             this.handler.addemp(req, res);
         });
     }

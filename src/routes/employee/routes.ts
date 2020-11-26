@@ -8,8 +8,6 @@ export class RouteEmployee {
 
     constructor() {
         this.router.post('/api/employee', (req: Request, res: Response) => {
-            console.log('test');
-            
             this.handler.addemp(req, res);
         });
     }
