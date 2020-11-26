@@ -15,9 +15,8 @@ class Service {
         this.serviceMssql = new connectDB_1.ServiceMssql();
         this.addEmployee = (params) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.serviceMssql.query(`SELECT ID_EMP FROM EmployeeTable Where ID_EMP ='${params.ID_EMP}'`);
-                debugger;
-                if (response) {
+                const response = yield this.serviceMssql.query(`SELECT ID_EMP FROM EmployeeTable Where ID_EMP = '${params.ID_EMP}'`);
+                if (response && response.length > 0) {
                     return ('This code already has');
                 }
                 else {

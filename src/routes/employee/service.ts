@@ -8,9 +8,8 @@ export default class Service {
 
     public addEmployee = async (params: AddEmployee) => {
         try {
-            const response = await this.serviceMssql.query(`SELECT ID_EMP FROM EmployeeTable`)
-            debugger
-            if (response) {
+            const response: any = await this.serviceMssql.query(`SELECT ID_EMP FROM EmployeeTable Where ID_EMP = '${params.ID_EMP}'`)
+            if (response && response.length > 0) {
                 return ('This code already has')
             } else {
                 this.serviceMssql.query(`INSERT INTO EmployeeTable (ID_EMP, DEPT, Gender, Name, Surname, OT)
