@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { HttpService } from './../../hr/shared/http.service';
 
 @Component({
   selector: 'app-employee',
@@ -40,13 +41,26 @@ export class EmployeeComponent implements OnInit {
     { name: 'Full', value: 'Full' },
     { name: 'No', value: 'No' }
   ];
+  data: any;
 
-  constructor() { }
+  constructor(private http: HttpClient, private httpService: HttpService) { }
 
   ngOnInit(): void {
 
   }
 
+  async addEmployee(): Promise<any> {
+    const form: any= this.formEmployee
+    const data = await this.httpService.post('/api/employee', this.formEmployee);
+    debugger
+  }
+  post(url, body?): Promise<any> {
+    return this.http.post(url, body).toPromise().then(response => {
+      return response;
+    }).catch((err) => {
+      throw err;
+    });
+  }
   // async addemployee(): Promise<any> {
 
   //   const genders = this.genders;

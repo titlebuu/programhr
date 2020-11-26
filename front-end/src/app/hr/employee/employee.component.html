@@ -5,12 +5,11 @@
         6
     </div>
     <div class="p-col-12">
-        <!-- <form [formGroup]="formEmployee" > -->
+        <form [formGroup]="formEmployee" >
         <div class="p-grid">
             <div class="p-col-3">
                 2
             </div>
-            <form [formGroup]="formEmployee">
                 <div class="p-col-6 bg p-mt-4">
 
                     <div class="p-fluid p-formgrid p-grid ">
@@ -20,7 +19,6 @@
                             <input id="emp_id" type="text" pInputText formControlName="emp_id" placeholder="ID Employee">
                         </div>
                     </div>
-
                     <div class="p-fluid p-formgrid p-grid">
                         <div class="p-field p-col">
                             <label for="name" class="font1">Firstname</label>
@@ -53,13 +51,12 @@
                         </div>
                     </div>
                     <br>
-                    <p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button>
+                    <p-button label="Submit" (click)="addEmployee()" icon="pi pi-check" iconPos="right"></p-button>
                 </div>
-            </form>
             <div class="p-col-3">
                 2
             </div>
         </div>
-        <!-- </form> -->
+        </form>
     </div>
 </div>
