@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
-import { HttpService } from './../../hr/shared/http.service';
+// import { HttpService } from './../../hr/shared/http.service';
 
 @Component({
   selector: 'app-employee',
@@ -18,11 +18,11 @@ export class EmployeeComponent implements OnInit {
     selectedOT: new FormControl()
   });
   genders: any[] = [
-    { name: 'Male', code: 'M' },
+    { name: 'Male', value: 'M' },
     { name: 'Female', value: 'F' }
   ];
   dept: any[] = [
-    { name: 'BDP', code: 'BDP' },
+    { name: 'BDP', value: 'BDP' },
     { name: 'BP', value: 'BP' },
     { name: 'DC', value: 'DC' },
     { name: 'ENG', value: 'ENG' },
@@ -37,22 +37,28 @@ export class EmployeeComponent implements OnInit {
     { name: 'PTF', value: 'PTF' }
   ];
   ot: any[] = [
-    { name: 'Allow', code: 'Allow' },
+    { name: 'Allow', value: 'Allow' },
     { name: 'Full', value: 'Full' },
     { name: 'No', value: 'No' }
   ];
-  data: any;
 
-  constructor(private http: HttpClient, private httpService: HttpService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
 
   }
 
   async addEmployee(): Promise<any> {
-    const form: any= this.formEmployee
-    const data = await this.httpService.post('/api/employee', this.formEmployee);
-    debugger
+    const form: any = {
+      ID_EMP: this.formEmployee.value.emp_id,
+      DEPT: this.formEmployee.value.selectedDept.value,
+      Gender: this.formEmployee.value.selectedGender.value,
+      Name: this.formEmployee.value.name,
+      Surname: this.formEmployee.value.lastname,
+      OT: this.formEmployee.value.selectedOT.value
+    }
+    const data = await this.post('/api/employee', form);
+
   }
   post(url, body?): Promise<any> {
     return this.http.post(url, body).toPromise().then(response => {
@@ -61,16 +67,6 @@ export class EmployeeComponent implements OnInit {
       throw err;
     });
   }
-  // async addemployee(): Promise<any> {
-
-  //   const genders = this.genders;
-  //   const dept = this.dept;
-  //   const typeot = this.ot
-
-  //   this.addemp = await this.query()
-
-  // }
-
 
 }
 
