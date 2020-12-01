@@ -20,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { HomeComponent } from './hr/home/home.component';
 
 
 
@@ -31,7 +32,8 @@ import { MessageModule } from 'primeng/message';
     AppComponent,
     FormatdatePipe,
     ExportComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

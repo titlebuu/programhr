@@ -62,8 +62,14 @@ export class EmployeeComponent implements OnInit {
       OT: this.formEmployee.value.selectedOT.value
     }
     this.data = await this.post('/api/employee', form);
+    if (this.data === 'Success') {
+      this.addMessages()
+    } else {
+
+    }
 
   }
+
   post(url, body?): Promise<any> {
     return this.http.post(url, body).toPromise().then(response => {
       return response;
