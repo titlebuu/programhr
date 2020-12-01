@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Message, MessageService } from 'primeng/api';
 // import { HttpService } from './../../hr/shared/http.service';
 
 @Component({
@@ -42,6 +43,9 @@ export class EmployeeComponent implements OnInit {
     { name: 'No', value: 'No' }
   ];
 
+  msgs1: Message[];
+  data: string;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -57,7 +61,7 @@ export class EmployeeComponent implements OnInit {
       Surname: this.formEmployee.value.lastname,
       OT: this.formEmployee.value.selectedOT.value
     }
-    const data = await this.post('/api/employee', form);
+    this.data = await this.post('/api/employee', form);
 
   }
   post(url, body?): Promise<any> {
@@ -66,6 +70,10 @@ export class EmployeeComponent implements OnInit {
     }).catch((err) => {
       throw err;
     });
+  }
+
+  addMessages() {
+    this.msgs1 = [{ severity: 'success', summary: 'Success', detail: 'Message Content' }];
   }
 
 }

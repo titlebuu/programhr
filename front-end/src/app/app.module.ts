@@ -18,6 +18,8 @@ import { ExportComponent } from './hr/export/export.component';
 import { EmployeeComponent } from './hr/employee/employee.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 
 
@@ -43,7 +45,9 @@ import { DropdownModule } from 'primeng/dropdown';
     TableModule,
     InputTextModule,
     DropdownModule,
-   ReactiveFormsModule
+    ReactiveFormsModule,
+    MessagesModule,
+    MessageModule
 
 
   ],

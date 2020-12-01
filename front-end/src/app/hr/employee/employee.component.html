@@ -1,22 +1,21 @@
 <div class="p-grid">
-    <div class="p-col-3 header">
-    </div>
-    <div class="p-col-9 header">
+    <div class="p-col-12 header">
         6
     </div>
     <div class="p-col-12">
-        <form [formGroup]="formEmployee" >
-        <div class="p-grid">
-            <div class="p-col-3">
-                2
-            </div>
+        <p-messages [(value)]="msgs1" [enableService]="false"></p-messages>
+        <form [formGroup]="formEmployee">
+            <div class="p-grid">
+                <div class="p-col-3">
+                    2
+                </div>
                 <div class="p-col-6 bg p-mt-4">
-
                     <div class="p-fluid p-formgrid p-grid ">
 
-                        <div class="p-field p-col">
+                        <div class="p-field p-col ">
                             <label for="emp_id" class="font1">ID Employee</label>
-                            <input id="emp_id" type="text" pInputText formControlName="emp_id" placeholder="ID Employee">
+                            <input id="emp_id" type="text" pInputText formControlName="emp_id"
+                                placeholder="ID Employee">
                         </div>
                     </div>
                     <div class="p-fluid p-formgrid p-grid">
@@ -26,7 +25,8 @@
                         </div>
                         <div class="p-field p-col">
                             <label for="lastname" class="font1">Lastname</label>
-                            <input id="lastname" type="text" pInputText formControlName="lastname" placeholder="Lastname">
+                            <input id="lastname" type="text" pInputText formControlName="lastname"
+                                placeholder="Lastname">
                         </div>
                     </div>
                     <div class="p-fluid p-formgrid p-grid">
@@ -46,17 +46,17 @@
                     <div class="p-fluid p-formgrid p-grid">
                         <div class="p-field p-col">
                             <label for="typeot" class="font1">Type OT</label>
-                            <p-dropdown inputId="typeot" [options]="ot" formControlName="selectedOT" placeholder="Select"
-                                optionLabel="name"></p-dropdown>
+                            <p-dropdown inputId="typeot" [options]="ot" formControlName="selectedOT"
+                                placeholder="Select" optionLabel="name"></p-dropdown>
                         </div>
                     </div>
                     <br>
-                    <p-button label="Submit" (click)="addEmployee()" icon="pi pi-check" iconPos="right"></p-button>
+                    <p-button label="Submit" (click)="addMessages()" icon="pi pi-check" iconPos="right"></p-button>
                 </div>
-            <div class="p-col-3">
-                2
+                <div class="p-col-3">
+                    2
+                </div>
             </div>
-        </div>
         </form>
     </div>
 </div>
