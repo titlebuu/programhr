@@ -9,6 +9,7 @@ export default class Handler {
     public addemp = async (req: Request, res: Response) => {
         const params : AddEmployee = req.body;
         const response = await this.service.addEmployee(params);
+        debugger
         res.status(200).send(response);
     }
     // (req.query.date1,req.query.date2)

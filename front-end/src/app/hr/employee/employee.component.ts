@@ -44,6 +44,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   msgs1: Message[];
+  msgs2: Message[];
   data: string;
 
   constructor(private http: HttpClient) { }
@@ -65,9 +66,8 @@ export class EmployeeComponent implements OnInit {
     if (this.data === 'Success') {
       this.addMessages()
     } else {
-
+      this.errorMessages()
     }
-
   }
 
   post(url, body?): Promise<any> {
@@ -80,6 +80,10 @@ export class EmployeeComponent implements OnInit {
 
   addMessages() {
     this.msgs1 = [{ severity: 'success', summary: 'Success', detail: 'Message Content' }];
+  }
+
+  errorMessages() {
+    this.msgs2 = [{ severity: 'error', summary: 'Error', detail: 'Message Content' }]
   }
 
 }
