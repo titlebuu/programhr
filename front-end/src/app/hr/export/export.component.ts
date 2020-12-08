@@ -31,7 +31,7 @@ export class ExportComponent implements OnInit {
       { field: 'Date_ACC', header: 'Date(YYYYMMDD)' },
       { field: 'AttendanceType', header: 'Attendance Type' },
       { field: 'Houre', header: 'Hours' }
-  
+
     ];
   }
   downloadExcel() {
@@ -52,7 +52,6 @@ export class ExportComponent implements OnInit {
 
     const date1 = moment(this.start_date).format('YYYY-MM-DD');
     const date2 = moment(this.to_date).format('YYYY-MM-DD');
-
     this.data = await this.query('/api/listdata', {
       date1: date1,
       date2: date2
@@ -60,7 +59,7 @@ export class ExportComponent implements OnInit {
   }
 
   query(url: string, params?: any): Promise<any> {
-    return this.http.get(url, params).toPromise().then(response => {
+    return this.http.get(url, { params: params }).toPromise().then(response => {
       return response;
     }).catch((err) => {
       throw err;
