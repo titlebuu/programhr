@@ -9,6 +9,7 @@ class RouteEmployee {
         this.handler = new handler_1.default();
         this.router.post('/api/employee', (req, res) => {
             this.handler.addemp(req, res);
+            debugger;
         });
     }
 }

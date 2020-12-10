@@ -1,8 +1,8 @@
 <div class="p-mb-2 p-mt-4 p-ml-4 demo-container">
     <label for="icon" class="p-text-bold p-mr-2" >Start Date</label>
-    <p-calendar [(ngModel)]="start_date" [showIcon]="true" inputId="icon" class="p-mr-5"></p-calendar>
+    <p-calendar [(ngModel)]="start_date" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" class="p-mr-5"></p-calendar>
     <label for="icon" class="p-text-bold p-mr-2">To</label>
-    <p-calendar [(ngModel)]="to_date" [showIcon]="true" inputId="icon" class="p-mr-5"></p-calendar>
+    <p-calendar [(ngModel)]="to_date" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" class="p-mr-5"></p-calendar>
     <button (click)="test12()" pButton pRipple type="button" label="Summit" icon="pi pi-check" iconPos="right" class="p-button-success"></button>
 </div>
 <br>
@@ -27,7 +27,7 @@
             <td>{{item.ID_EMP}}</td>
             <td>{{item.JOB_NO}}</td>
             <td [ngClass]="{'msg-red': red(item.Cost_code)}">{{item.Cost_code}}</td>
-            <td>{{item.Date_ACC | formatdate: 'YYYYMMDD':'DD-MM-YYYY'}}</td>
+            <td>{{item.Date_ACC | formatdate: 'YYYYMMDD':'DD/MM/YYYY'}}</td>
             <td>{{item.AttendanceType}}</td>
             <td>{{item.Houre}}</td>
         </tr>

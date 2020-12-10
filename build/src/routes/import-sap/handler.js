@@ -18,7 +18,6 @@ class Handler {
             const response = yield this.service.getEmployee(req.query.date1, req.query.date2);
             res.status(200).send(response);
         });
-        // (req.query.date1,req.query.date2)
     }
 }
 exports.default = Handler;

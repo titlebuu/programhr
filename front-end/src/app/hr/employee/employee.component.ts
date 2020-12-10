@@ -45,7 +45,6 @@ export class EmployeeComponent implements OnInit {
 
   msgs1: Message[];
   msgs2: Message[];
-  data: string;
 
   constructor(private http: HttpClient) { }
 
@@ -62,8 +61,8 @@ export class EmployeeComponent implements OnInit {
       Surname: this.formEmployee.value.lastname,
       OT: this.formEmployee.value.selectedOT.value
     }
-    this.data = await this.post('/api/employee', form);
-    if (this.data === 'Success') {
+    const data = await this.post('/api/employee', form);
+    if (data === 'Success') {
       this.addMessages()
     } else {
       this.errorMessages()
