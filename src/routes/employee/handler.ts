@@ -10,10 +10,8 @@ export default class Handler {
         try {
             const params: AddEmployee = req.body;
             const response = await this.service.addEmployee(params);
-            debugger
             res.status(200).send(response);
         } catch (error) {
-            debugger
         }
     }
     // (req.query.date1,req.query.date2)
