@@ -7,9 +7,14 @@ export default class Handler {
     service: Service = new Service();
 
     public addemp = async (req: Request, res: Response) => {
-        const params : AddEmployee = req.body;
-        const response = await this.service.addEmployee(params);
-        res.status(200).send(response);
+        try {
+            const params: AddEmployee = req.body;
+            const response = await this.service.addEmployee(params);
+            debugger
+            res.status(200).send(response);
+        } catch (error) {
+            debugger
+        }
     }
     // (req.query.date1,req.query.date2)
 }

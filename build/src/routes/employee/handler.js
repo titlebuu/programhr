@@ -15,9 +15,15 @@ class Handler {
     constructor() {
         this.service = new service_1.default();
         this.addemp = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const params = req.body;
-            const response = yield this.service.addEmployee(params);
-            res.status(200).send(response);
+            try {
+                const params = req.body;
+                const response = yield this.service.addEmployee(params);
+                debugger;
+                res.status(200).send(response);
+            }
+            catch (error) {
+                debugger;
+            }
         });
         // (req.query.date1,req.query.date2)
     }

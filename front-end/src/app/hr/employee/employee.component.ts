@@ -45,11 +45,12 @@ export class EmployeeComponent implements OnInit {
 
   msgs1: Message[];
   msgs2: Message[];
+  data: any;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-
+    
   }
 
   async addEmployee(): Promise<any> {
@@ -61,8 +62,9 @@ export class EmployeeComponent implements OnInit {
       Surname: this.formEmployee.value.lastname,
       OT: this.formEmployee.value.selectedOT.value
     }
-    const data = await this.post('/api/employee', form);
-    if (data === 'Success') {
+    this.data = await this.post('/api/employee', form);
+    debugger
+    if (this.data === 'Success') {
       this.addMessages()
     } else {
       this.errorMessages()
@@ -71,8 +73,10 @@ export class EmployeeComponent implements OnInit {
 
   post(url, body?): Promise<any> {
     return this.http.post(url, body).toPromise().then(response => {
+      debugger
       return response;
     }).catch((err) => {
+      debugger
       throw err;
     });
   }

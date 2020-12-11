@@ -17,12 +17,18 @@ class Service {
             try {
                 const response = yield this.serviceMssql.query(`SELECT ID_EMP FROM EmployeeTable Where ID_EMP = '${params.ID_EMP}'`);
                 if (response && response.length > 0) {
-                    return ('This code already has');
+                    return ({
+                        resultCode: 40300,
+                        message: 'This code already has'
+                    });
                 }
                 else {
                     this.serviceMssql.query(`INSERT INTO EmployeeTable (ID_EMP, DEPT, Gender, Name, Surname, OT)
             VALUES ('${params.ID_EMP}', '${params.DEPT}', '${params.Gender}', '${params.Name}', '${params.Surname}', '${params.OT}')`);
-                    return ('Success');
+                    return ({
+                        resultCode: 20000,
+                        message: 'Success'
+                    });
                 }
             }
             catch (error) {
