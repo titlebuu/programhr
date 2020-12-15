@@ -1,52 +1,60 @@
-.bg {
-  border-radius: 10px;
-  background-color: #f2f2f2;
+.harder{
+  margin-bottom: 8px;
+  text-align: center;
+}
+.box1{
+    min-width: 100%;
+    min-height: 184px;
+    color: #fff;
+    background-color: #00d0ff;
+    text-align: center;
+    margin-top: 2rem;
+}
+.box1:hover{
+  background-color: #00acd3;
+}
+.box2{
+  min-width: 100%;
+  min-height: 184px;
+  color: #fff;
+  background-color: #ffee00;
+  text-align: center;
+  margin-top: 2rem;
+}
+.box2:hover{
+  background-color:#e1d204;
+}
+.box3{
+  min-width: 100%;
+  min-height: 184px;
+  color: #fff;
+  background-color: #7700ff;
+  text-align: center;
+  margin-top: 2rem;
+}
+.box3:hover{
+  background-color: #6201d1;
+}
+
+.bg-green {
+  background-color: #d2d711;
+}
+
+.bg-blue{
+  background-color: #006eff;;
+}
+
+.bg-red {
+  background-color: #ff0000;
+}
+
+.bg-pick {
+    background-color: #ff00d4;
+}
+.bg-gray{
+  background-color: rgb(158, 158, 158);
+}
+
+.padding{
   padding: 50px;
-  }
-
-  .header {
-    padding: 30px;
-    text-align: center;
-    background: rgb(0, 132, 255);
-  }
-
-  .btn{
-    padding: 80px 120px;
-    border-radius: 4px;
-    text-align: center;
-    font-family: "Times New Roman";
-    font-size: 20px;
-  }
-
-  .button1 {
-    background-color: #007BFF; 
-    color: white; 
-    border: none;
-  }
-  
-  .button1:hover {
-    background-color: #006cdf;
-    color: white;
-  }
-
-  .button2 {
-    background-color: #17A2BB; 
-    color: white; 
-    border: none;
-  }
-  
-  .button2:hover {
-    background-color: #1594aa;
-    color: white;
-  }
-
-  .button3 {
-    background-color: #FFC107; 
-    color: white; 
-    border: none;
-  }
-  
-  .button3:hover {
-    background-color: #ebb30b;
-    color: white;
-  }
+}
