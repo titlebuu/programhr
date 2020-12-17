@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 // import { HttpService } from './../../hr/shared/http.service';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  styleUrls: ['./employee.component.scss'],
+  providers: [ConfirmationService]
 })
 export class EmployeeComponent implements OnInit {
   formEmployee = new FormGroup({
@@ -45,9 +47,10 @@ export class EmployeeComponent implements OnInit {
 
   msgs1: Message[];
   msgs2: Message[];
+  msgs3: Message[];
   data: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
 
@@ -85,6 +88,24 @@ export class EmployeeComponent implements OnInit {
   errorMessages() {
     this.msgs2 = [{ severity: 'error', summary: 'Error', detail: 'Message Content' }]
   }
+
+  rejected(){
+    this.msgs3 = [{severity:'info', summary:'Info', detail:'Message Content'}]
+  }
+
+  confirm1() {
+    this.confirmationService.confirm({
+        message: 'Are you sure that you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.addEmployee()
+        },
+        reject: () => {
+            this.rejected()
+        }
+    });
+}
 
 }
 

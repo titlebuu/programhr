@@ -1,60 +1,60 @@
 .harder{
-  margin-bottom: 8px;
-  text-align: center;
+  margin-bottom: 9px;
+  text-align: left;
+  background-color: #002554;
+}
+.logo-harder{
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 40px;
 }
 .box1{
     min-width: 100%;
     min-height: 184px;
     color: #fff;
-    background-color: #00d0ff;
+    background-color: #007bff;
+    border-radius: 10px;
     text-align: center;
     margin-top: 2rem;
 }
 .box1:hover{
-  background-color: #00acd3;
+  background-color: #0075f1;
 }
 .box2{
   min-width: 100%;
   min-height: 184px;
   color: #fff;
-  background-color: #ffee00;
+  background-color: #17a2b8;
+  border-radius: 10px;
   text-align: center;
   margin-top: 2rem;
 }
 .box2:hover{
-  background-color:#e1d204;
+  background-color:#169baf;
 }
 .box3{
   min-width: 100%;
   min-height: 184px;
   color: #fff;
-  background-color: #7700ff;
+  background-color: #ffbf00;
+  border-radius: 10px;
   text-align: center;
   margin-top: 2rem;
 }
 .box3:hover{
-  background-color: #6201d1;
+  background-color:  #f3b600;
+}
+.bg-allbox{
+  border: 1px solid #dee2e6;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  padding: 40px;
+  border-radius: 10px;
+  font-family: Tahoma, Verdana, sans-serif;
 }
 
-.bg-green {
-  background-color: #d2d711;
+.icon-center{
+  padding-top: 70px;
 }
 
-.bg-blue{
-  background-color: #006eff;;
-}
-
-.bg-red {
-  background-color: #ff0000;
-}
-
-.bg-pick {
-    background-color: #ff00d4;
-}
-.bg-gray{
-  background-color: rgb(158, 158, 158);
-}
-
-.padding{
-  padding: 50px;
-}

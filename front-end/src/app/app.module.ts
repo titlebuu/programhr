@@ -19,8 +19,8 @@ import { EmployeeComponent } from './hr/employee/employee.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
-import { MessageModule } from 'primeng/message';
 import { HomeComponent } from './hr/home/home.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 
@@ -49,7 +49,7 @@ import { HomeComponent } from './hr/home/home.component';
     DropdownModule,
     ReactiveFormsModule,
     MessagesModule,
-    MessageModule
+    ConfirmDialogModule
 
 
   ],
