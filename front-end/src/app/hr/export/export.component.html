@@ -1,38 +1,64 @@
-<div class="p-mb-2 p-mt-4 p-ml-4 demo-container">
-    <label for="icon" class="p-text-bold p-mr-2" >Start Date</label>
-    <p-calendar [(ngModel)]="start_date" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" class="p-mr-5"></p-calendar>
-    <label for="icon" class="p-text-bold p-mr-2">To</label>
-    <p-calendar [(ngModel)]="to_date" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" class="p-mr-5"></p-calendar>
-    <button (click)="test12()" pButton pRipple type="button" label="Summit" icon="pi pi-check" iconPos="right" class="p-button-success"></button>
+<div class="p-grid">
+    <div class="p-col-12 header mgb">
+        <img src="assets/logo/rotarylogo.jpg" alt="trellogo" class="logo-harder">
+    </div>
 </div>
-<br>
-<p-table #dt [columns]="cols" [value]="data">
-    <ng-template pTemplate="caption">
-        <div class="p-d-flex">
-            <button type="button" pButton pRipple icon="pi pi-file-o" (click)="downloadExcel()" class="p-mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
-            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
-            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+<div class="p-grid">
+    <div class="p-col-12 p-md-12 p-lg-6 p-xl-5 left">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4 p-lg-5 p-xl-4">
+                <label for="icon" class="p-text-bold ">Start Date</label><br>
+                <p-calendar [(ngModel)]="start_date" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon">
+                </p-calendar>
+            </div>
+            <div class="p-col-12 p-md-4 p-lg-5 p-xl-4">
+                <label for="icon" class="p-text-bold">To</label><br>
+                <p-calendar [(ngModel)]="to_date" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon">
+                </p-calendar>
+            </div>
+            <div class="p-col-12 p-md-4 p-lg-2 p-xl-4 left">
+                <br>
+                <button (click)="test12()" pButton pRipple type="button" label="Summit" icon="pi pi-check"
+                    iconPos="right" class="p-button-success "></button>
+            </div>
         </div>
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-item let-columns="columns" let-rowIndex="rowIndex">
-        <tr [pSelectableRow]="item">
-            <td>{{rowIndex+1}}</td>
-            <td>{{item.ID_EMP}}</td>
-            <td>{{item.JOB_NO}}</td>
-            <td [ngClass]="{'msg-red': red(item.Cost_code)}">{{item.Cost_code}}</td>
-            <td>{{item.Date_ACC | formatdate: 'YYYYMMDD':'DD/MM/YYYY'}}</td>
-            <td>{{item.AttendanceType}}</td>
-            <td>{{item.Houre}}</td>
-        </tr>
-    </ng-template>
-</p-table>
+    </div>
+    <div class="p-col-12 p-md-12 p-lg-6 p-xl-7"></div>
+</div>
+<div class="p-grid">
+    <div class="p-col-12 p-md-12 p-lg-12 p-xl-12">
+        <p-table #dt [columns]="cols" [value]="data">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex">
+                    <button type="button" pButton pRipple icon="pi pi-file-o" (click)="downloadExcel()" class="p-mr-2"
+                        pTooltip="CSV" tooltipPosition="bottom"></button>
+                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()"
+                        class="p-button-success p-mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                    <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+                        class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-columns="columns" let-rowIndex="rowIndex">
+                <tr [pSelectableRow]="item">
+                    <td>{{rowIndex+1}}</td>
+                    <td>{{item.ID_EMP}}</td>
+                    <td>{{item.JOB_NO}}</td>
+                    <td [ngClass]="{'msg-red': red(item.Cost_code)}">{{item.Cost_code}}</td>
+                    <td>{{item.Date_ACC | formatdate: 'YYYYMMDD':'DD/MM/YYYY'}}</td>
+                    <td>{{item.AttendanceType}}</td>
+                    <td>{{item.Houre}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
 
 <!-- <button (click)="downloadExcel()" class="button">Dowload File</button> -->
 
