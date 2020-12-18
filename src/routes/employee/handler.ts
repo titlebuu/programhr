@@ -14,5 +14,10 @@ export default class Handler {
         } catch (error) {
         }
     }
+
+    public getemployee = async (req: Request, res: Response) => {
+        const response2 = await this.service.getAll();
+        res.status(200).send(response2);
+      }
     // (req.query.date1,req.query.date2)
 }

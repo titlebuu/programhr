@@ -10,6 +10,10 @@ export class RouteEmployee {
         this.router.post('/api/employee', (req: Request, res: Response) => {
             this.handler.addemp(req, res);
         });
+
+        this.router.get('/api/employee', (req: Request, res: Response) => {
+            this.handler.getemployee(req, res);
+        });
     }
 }
 

@@ -9,7 +9,7 @@ import { ConfirmationService } from 'primeng/api';
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService, MessageService]
 })
 export class EmployeeComponent implements OnInit {
   formEmployee = new FormGroup({
@@ -49,13 +49,34 @@ export class EmployeeComponent implements OnInit {
   msgs2: Message[];
   msgs3: Message[];
   data: any;
+  cols: any[];
+  dialogVisible: boolean;
+  dataemp: any;
 
   constructor(private http: HttpClient, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-
+    this.cols = [
+      { field: 'NO', header: 'NO' },
+      { field: 'ID_EMP', header: 'Employee ID' },
+      { field: 'DEPT', header: 'Department' },
+      { field: 'Gender', header: 'Gender' },
+      { field: 'Name', header: 'Name' },
+      { field: 'Surname', header: 'Surname' },
+      { field: 'OT', header: 'OT' }
+    ];
+  }
+  async listemp(): Promise<any> {
+    this.dataemp = await this.query('/api/employee');
   }
 
+  query(url: string): Promise<any> {
+    return this.http.get(url).toPromise().then(response => {
+      return response;
+    }).catch((err) => {
+      throw err;
+    });
+  }
   async addEmployee(): Promise<any> {
     const form: any = {
       ID_EMP: this.formEmployee.value.emp_id,
@@ -68,6 +89,7 @@ export class EmployeeComponent implements OnInit {
     this.data = await this.post('/api/employee', form);
     if (this.data.resultCode === 20000) {
       this.addMessages()
+      this.formEmployee.reset()
     } else {
       this.errorMessages()
     }
@@ -82,30 +104,35 @@ export class EmployeeComponent implements OnInit {
   }
 
   addMessages() {
-    this.msgs1 = [{ severity: 'success', summary: 'Success', detail: 'Message Content' }];
+    this.msgs1 = [{ severity: 'success', summary: 'Success', detail: this.data.message }];
   }
 
   errorMessages() {
-    this.msgs2 = [{ severity: 'error', summary: 'Error', detail: 'Message Content' }]
+    this.msgs2 = [{ severity: 'error', summary: 'Error', detail: this.data.message }]
   }
 
-  rejected(){
-    this.msgs3 = [{severity:'info', summary:'Info', detail:'Message Content'}]
+  rejected() {
+    this.msgs3 = [{ severity: 'info', summary: 'Info', detail: 'Message Content' }]
   }
 
   confirm1() {
     this.confirmationService.confirm({
-        message: 'Are you sure that you want to proceed?',
-        header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.addEmployee()
-        },
-        reject: () => {
-            this.rejected()
-        }
+      message: 'Are you sure that you want to proceed?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.addEmployee()
+      },
+      reject: () => {
+        this.rejected()
+      }
     });
-}
+  }
+
+  view() {
+    this.dialogVisible = true;
+    this.listemp();
+  }
 
 }
 

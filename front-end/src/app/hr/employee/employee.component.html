@@ -51,6 +51,35 @@
             </div>
             <br>
             <p-button label="Submit" (click)="confirm1()" icon="pi pi-check" iconPos="right"></p-button>
+            <button type="button" (click)="view()" pButton icon="pi pi-external-link" label="View"></button>
+            <p-dialog header="Flexible ScrollHeight" [(visible)]="dialogVisible" [style]="{width: '50vw'}"
+                [baseZIndex]="10000" [maximizable]="true" [modal]="true" [resizable]="true"
+                [contentStyle]="{height: '300px'}">
+                <p-table [value]="Employee" [scrollable]="true" scrollHeight="flex">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item let-columns="columns" let-rowIndex="rowIndex">
+                        <tr [pSelectableRow]="item">
+                            <td>{{rowIndex+1}}</td>
+                            <td>{{item.ID_EMP}}</td>
+                            <td>{{item.DEPT}}</td>
+                            <td>{{item.Gender}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Surname}}</td>
+                            <td>{{item.OT}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <ng-template pTemplate="footer">
+                    <button type="button" pButton pRipple icon="pi pi-times" (click)="dialogVisible=false"
+                        label="Dismiss" class="p-button-text"></button>
+                </ng-template>
+            </p-dialog>
         </div>
         <div class="p-col-12 p-md-12 p-lg-2 p-xl-3"></div>
     </div>

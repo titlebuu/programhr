@@ -48,7 +48,7 @@ export class ExportComponent implements OnInit {
 
   }
 
-  async test12(): Promise<any> {
+  async listexport(): Promise<any> {
 
     const date1 = moment(this.start_date).format('YYYY-MM-DD');
     const date2 = moment(this.to_date).format('YYYY-MM-DD');

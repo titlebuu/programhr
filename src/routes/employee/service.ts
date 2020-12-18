@@ -26,4 +26,8 @@ export default class Service {
             throw error;
         }
     }
+
+    public getAll = async () => {
+        return await this.serviceMssql.query(`SELECT ID_EMP, DEPT, Gender, Name, Surname, OT FROM EmployeeTable ORDER BY ID_EMP`);
+    }
 }
