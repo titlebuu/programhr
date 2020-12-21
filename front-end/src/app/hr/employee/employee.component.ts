@@ -15,29 +15,24 @@ import { ConfirmationService } from 'primeng/api';
 export class EmployeeComponent implements OnInit {
   cols: any[];
   dataemp: any;
+  
 
   constructor(private http: HttpClient, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-
+    this.listemp()
   }
   async listemp(): Promise<any> {
-    this.cols = [
-      { field: 'NO', header: 'NO' },
-      { field: 'ID_EMP', header: 'Employee ID' },
-      { field: 'DEPT', header: 'Department' },
-      { field: 'Gender', header: 'Gender' },
-      { field: 'Name', header: 'Name' },
-      { field: 'Surname', header: 'Surname' },
-      { field: 'OT', header: 'OT' }
-    ];
+    debugger
     this.dataemp = await this.query('/api/employee');
   }
 
   query(url: string): Promise<any> {
+    debugger
     return this.http.get(url).toPromise().then(response => {
       return response;
     }).catch((err) => {
+      debugger
       throw err;
     });
   }

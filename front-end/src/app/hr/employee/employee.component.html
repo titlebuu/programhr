@@ -14,12 +14,22 @@
                     [disabled]="!selectedProducts || !selectedProducts.length"></button>
             </ng-template>
         </p-toolbar>
-        <p-table #dt [value]="products" [rows]="10" [paginator]="true"
-            [globalFilterFields]="['name','country.name','representative.name','status']"
-            [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+        <p-table #dt [value]="dataemp" [columns]="cols" [rows]="20" [paginator]="true"
+            [globalFilterFields]="['ID_EMP','Name','Surname','DEPT','Gender','OT']"
+            [rowHover]="true" dataKey="id"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [showCurrentPageReport]="true">
-            <ng-template pTemplate="header">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <h5 class="p-m-0">Manage Products</h5>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search..." />
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
@@ -39,6 +49,25 @@
                     <th></th>
                 </tr>
             </ng-template>
+            <ng-template pTemplate="body" let-item let-columns="columns">
+                <tr [pSelectableRow]="item">
+                    <td>
+                        <p-tableCheckbox [value]="dataemp"></p-tableCheckbox>
+                    </td>
+                    <td>{{item.ID_EMP}}</td>
+                    <td>{{item.Name}}</td>
+                    <td>{{item.Surname}}</td>
+                    <td>{{item.DEPT}}</td>
+                    <td>{{item.Gender}}</td>
+                    <td>{{item.OT}}</td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                            (click)="editProduct(product)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                            (click)="deleteProduct(product)"></button>
+                    </td>
+                </tr>
+            </ng-template>
         </p-table>
     </div>
 </div>
@@ -48,7 +77,21 @@
 
 
 
-
+<!-- <p-table #dt [value]="dataemp" [columns]="cols" [rows]="10" [paginator]="true"
+            [globalFilterFields]="['ID_EMP','Name','Surname','DEPT','Gender','OT']"
+            [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <h5 class="p-m-0">Manage Products</h5>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search..." />
+                    </span>
+                </div>
+            </ng-template> -->
 
 
 
