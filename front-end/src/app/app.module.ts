@@ -16,14 +16,13 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ExportComponent } from './hr/export/export.component';
 import { EmployeeComponent } from './hr/employee/employee.component';
+import { AddEmployeeComponent } from './hr/employee/add-employee/add-employee.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
 import { HomeComponent } from './hr/home/home.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
-
-
+import { ToolbarModule } from 'primeng/toolbar';
 
 
 
@@ -33,7 +32,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormatdatePipe,
     ExportComponent,
     EmployeeComponent,
-    HomeComponent
+    HomeComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DropdownModule,
     ReactiveFormsModule,
     MessagesModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToolbarModule
 
 
   ],
