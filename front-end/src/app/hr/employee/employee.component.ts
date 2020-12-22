@@ -6,6 +6,15 @@ import { ConfirmationService } from 'primeng/api';
 
 // import { HttpService } from './../../hr/shared/http.service';
 
+export interface AddEmployee {
+  ID_EMP: string;
+  DEPT: string;
+  Gender: string;
+  Name: string;
+  Surname: string;
+  OT: string;
+
+}
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -38,11 +47,12 @@ export class EmployeeComponent implements OnInit {
   ];
   employeeDialog: boolean;
   cols: any[];
-  dataemp: any;
+  dataemp: AddEmployee[];
+  selectedProducts: AddEmployee[];
   submitted: boolean;
   data: any;
-  
-  
+
+
 
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
@@ -55,8 +65,8 @@ export class EmployeeComponent implements OnInit {
     this.dataemp = await this.query('/api/employee');
   }
 
-  query(url: string): Promise<any> {
-    return this.http.get(url).toPromise().then(response => {
+  query(url: string): Promise<AddEmployee[]> {
+    return this.http.get<AddEmployee[]>(url).toPromise().then(response => {
       return response;
     }).catch((err) => {
       throw err;

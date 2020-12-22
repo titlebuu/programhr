@@ -15,8 +15,9 @@
                     [disabled]="!selectedProducts || !selectedProducts.length"></button>
             </ng-template>
         </p-toolbar>
-        <p-table #dt [value]="dataemp" [columns]="cols" [rows]="20" [paginator]="true"
-            [globalFilterFields]="['ID_EMP','Name','Surname','DEPT','Gender','OT']" [rowHover]="true" dataKey="id"
+        <p-table *ngIf="dataemp && dataemp.length > 0" #dt [value]="dataemp" [columns]="cols" [rows]="20"
+            [paginator]="true" [globalFilterFields]="['ID_EMP','Name','Surname','DEPT','Gender','OT']"
+            [(selection)]="selectedProducts" [rowHover]="true" dataKey="ID_EMP"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [showCurrentPageReport]="true">
             <ng-template pTemplate="caption">
@@ -52,7 +53,7 @@
             <ng-template pTemplate="body" let-item let-columns="columns">
                 <tr [pSelectableRow]="item">
                     <td>
-                        <p-tableCheckbox [value]="dataemp"></p-tableCheckbox>
+                        <p-tableCheckbox [value]="item"></p-tableCheckbox>
                     </td>
                     <td>{{item.ID_EMP}}</td>
                     <td>{{item.Name}}</td>
@@ -105,17 +106,19 @@
                 <label class="p-mb-3">Gender</label>
                 <div class="p-formgrid p-grid">
                     <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="gender1" name="gender" value="M" formControlName="radioButtonGender"></p-radioButton>
+                        <p-radioButton id="gender1" name="gender" value="M" formControlName="radioButtonGender">
+                        </p-radioButton>
                         <label for="gender1">Male</label>
                     </div>
                     <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="gender2" name="gender" value="F" formControlName="radioButtonGender"></p-radioButton>
+                        <p-radioButton id="gender2" name="gender" value="F" formControlName="radioButtonGender">
+                        </p-radioButton>
                         <label for="gender2">Female</label>
                     </div>
                 </div>
             </div>
             <div class="p-field">
-                <label class="p-mb-3">Gender</label>
+                <label class="p-mb-3">OT</label>
                 <div class="p-formgrid p-grid">
                     <div class="p-field-radiobutton p-col-4">
                         <p-radioButton id="OT1" name="OT" value="Allow" formControlName="radioButtonOT"></p-radioButton>
@@ -131,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </ng-template>
         <ng-template pTemplate="footer">
             <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
