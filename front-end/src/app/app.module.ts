@@ -14,6 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FormatdatePipe } from './pipe/formatdate.pipe';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 import { ExportComponent } from './hr/export/export.component';
 import { EmployeeComponent } from './hr/employee/employee.component';
 import { AddEmployeeComponent } from './hr/employee/add-employee/add-employee.component';
@@ -23,6 +24,8 @@ import { MessagesModule } from 'primeng/messages';
 import { HomeComponent } from './hr/home/home.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
+import { DialogModule } from 'primeng/dialog';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 
@@ -45,12 +48,15 @@ import { ToolbarModule } from 'primeng/toolbar';
     CalendarModule,
     ButtonModule,
     TableModule,
+    ToastModule,
     InputTextModule,
     DropdownModule,
     ReactiveFormsModule,
     MessagesModule,
     ConfirmDialogModule,
-    ToolbarModule
+    ToolbarModule,
+    DialogModule,
+    RadioButtonModule
 
 
   ],
