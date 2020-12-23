@@ -74,6 +74,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   async addEmployee(): Promise<any> {
+    this.submitted = true;
     const form: any = {
       ID_EMP: this.formEmployee.value.emp_id,
       DEPT: this.formEmployee.value.selectedDept.value,
@@ -82,7 +83,6 @@ export class EmployeeComponent implements OnInit {
       Surname: this.formEmployee.value.lastname,
       OT: this.formEmployee.value.radioButtonOT.value
     }
-    debugger
     this.data = await this.post('/api/employee', form);
     if (this.data.resultCode === 20000) {
       this.showSuccess()
@@ -115,6 +115,7 @@ export class EmployeeComponent implements OnInit {
   // }
 
   openNew() {
+    debugger
     this.submitted = false;
     this.employeeDialog = true;
     this.formEmployee.reset()
