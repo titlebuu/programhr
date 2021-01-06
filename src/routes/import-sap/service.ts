@@ -3,6 +3,28 @@ import { ServiceMssql } from "../utils/service/connectDB";
 import { DateWhere } from "./interface";
 import { ASN } from './interface';
 
+interface TimeModels {
+  ID_EMP: string;
+  JOB_NO: string;
+  Cost_code: string;
+  Date_ACC: Date;
+  AttendanceType: string;
+  Houre: number;
+}
+
+interface TimeModelsDB {
+  ID_EMP: string;
+  OT: string;
+  Date_ACC: Date;
+  JOB_NO: string;
+  Cost_Code: string;
+  ST1: number;
+  OT1: number;
+  OT1_5: number;
+  OT2: number;
+  OT3: number;
+}
+
 export default class Service {
   serviceMssql: ServiceMssql = new ServiceMssql();
 
@@ -10,7 +32,6 @@ export default class Service {
     try {
       const response: any = await this.serviceMssql.query(`select ojc.ID_EMP,ojc.OT,CONVERT(VARCHAR(8),ojc.Date_ACC,112) 'Date_ACC',ojc.JOB_NO,
       case
-        when ojc.Cost_Code = '7410' then '80102001'
         when ojc.Cost_Code = '7411' then '80102001'
         when ojc.Cost_Code = '7420' then '80102008'
         when ojc.Cost_Code = '7570' then '80102015'
@@ -41,117 +62,109 @@ export default class Service {
       where  ojc.Date_ACC between '${date1}' and '${date2}'`);
       const response2: any = await this.serviceMssql.query(`SELECT ats_no, wbs, activity_sequence_number, description, status  FROM Activity_Sequence_Number`);
       const data = [];
-      response.forEach(element => {
-        const wbs = `${element.JOB_NO}.${element.Cost_Code}`
+
+
+      // [
+      //   { id: '1', name: '1' },
+      //   { id: '2', name: '2' },
+      // ]
+
+      // [
+      //   '1',
+      //   '2',
+      // ]
+
+
+      response.forEach((element: TimeModelsDB) => {
+
         // CASE ST1
         if (element.ST1 > 0) {
 
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0800',
-            Houre: element.ST1,
-          })
-        }
-        // CASE OT1
-        if (element.OT1 > 0 && element.OT === 'Allow') {
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0804',
-            Houre: element.OT1,
-          })
+          if (element.Cost_Code === '7410')
+            var costCode = '80102001'
+          else
+            var costCode = element.Cost_Code
+
+          data.push(this.time(element, response2, costCode, element.ST1, '0800'));
         }
 
+        // CASE OT1
+        if (element.OT1 > 0 && element.OT === 'Allow') {
+
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT1, '0804'));
+        }
+
+
         if (element.OT1 > 0 && element.OT === 'Full') {
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0802',
-            Houre: element.OT1,
-          })
+
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT1, '0802'));
         }
 
         // CASE OT1.5
         if (element.OT1_5 > 0 && element.OT === 'Allow') {
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0804',
-            Houre: element.OT1_5,
-          })
+
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT1_5, '0804'));
         }
 
         if (element.OT1_5 > 0 && element.OT === 'Full') {
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0801',
-            Houre: element.OT1_5,
-          })
+
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT1_5, '0801'));
         }
 
         // CASE OT2
         if (element.OT2 > 0 && element.OT === 'Allow') {
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0804',
-            Houre: element.OT2,
-          })
+
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT2, '0804'));
         }
 
         if (element.OT2 > 0 && element.OT === 'Full') {
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0803',
-            Houre: element.OT2,
-          })
+
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT2, '0803'));
         }
 
         // CASE OT3
         if (element.OT3 > 0 && element.OT === 'Allow') {
 
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0804',
-            Houre: element.OT2,
-          })
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT3, '0804'));
         }
 
         if (element.OT3 > 0 && element.OT === 'Full') {
-          data.push({
-            ID_EMP: element.ID_EMP,
-            JOB_NO: element.JOB_NO,
-            Cost_code: this.report(wbs, response2),
-            Date_ACC: element.Date_ACC,
-            AttendanceType: '0805',
-            Houre: element.OT3,
-          })
+
+          const costCode = this.check7410(element.Cost_Code)
+          data.push(this.time(element, response2, costCode, element.OT3, '0805'));
         }
 
       });
+
       return data;
     } catch (error) {
       throw error;
+    }
+  }
+
+  check7410(costCode: string) {
+    if (costCode === '7410')
+      return '80102002'
+    else
+      return costCode
+  }
+
+  time(element: TimeModelsDB, response2: Array<ASN>, costCode: string, houre: number, codeType: string): TimeModels {
+    const wbs = `${element.JOB_NO}.${costCode}`;
+    return {
+      ID_EMP: element.ID_EMP,
+      JOB_NO: element.JOB_NO,
+      Cost_code: this.report(wbs, response2),
+      Date_ACC: element.Date_ACC,
+      AttendanceType: codeType,
+      Houre: houre,
     }
   }
 
@@ -159,11 +172,11 @@ export default class Service {
     const result = ActivitySequenceNumber.find((ele) => ele.wbs === code_wbs)
     // console.log(code_wbs + ' - ' + result); chaeck log
 
-    if (result && result.activity_sequence_number) {
+    if (result && result.activity_sequence_number)
       return result.activity_sequence_number;
-    } else {
-      return 'no ' + code_wbs;
-    }
+    else
+      return `no ${code_wbs}`;
+
     // reuturn result && result.activity_sequence_number || 'no ' + code_wbs; เขียน if อีกแบบ
   }
 }
