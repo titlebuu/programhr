@@ -78,40 +78,40 @@
     </div>
 </div>
 
-<form [formGroup]="formEmployee">
+
     <p-dialog [(visible)]="employeeDialog" [style]="{width: '450px'}" header="Employee Details" [modal]="true"
         styleClass="p-fluid">
         <ng-template pTemplate="content">
             <div class="p-field">
                 <label for="emp_id">ID Employee</label>
-                <input type="text" pInputText id="emp_id" formControlName="emp_id" required autofocus />
+                <input type="text" pInputText id="emp_id" [(ngModel)]="emp_id" required autofocus />
                 <small class="p-invalid" *ngIf="submitted">ID is required.</small>
             </div>
             <div class="p-formgrid p-grid">
                 <div class="p-field p-col">
                     <label for="name">Firstname</label>
-                    <input type="text" pInputText id="name" formControlName="name" />
+                    <input type="text" pInputText id="name" [(ngModel)]="name" />
                 </div>
                 <div class="p-field p-col">
                     <label for="lastname">Lastname</label>
-                    <input type="text" pInputText id="lastname" formControlName="lastname" />
+                    <input type="text" pInputText id="lastname" [(ngModel)]="lastname" />
                 </div>
             </div>
             <div class="p-field">
                 <label for="department">Department</label>
-                <p-dropdown inputId="department" [options]="dept" formControlName="selectedDept" placeholder="Select"
+                <p-dropdown inputId="department" [options]="dept" [(ngModel)]="selectedDept" placeholder="Select"
                     optionLabel="name"></p-dropdown>
             </div>
             <div class="p-field">
                 <label class="p-mb-3">Gender</label>
                 <div class="p-formgrid p-grid">
                     <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="gender1" name="gender" value="M" formControlName="radioButtonGender" >
+                        <p-radioButton id="gender1" name="gender" value="M" [(ngModel)]="radioButtonGender">
                         </p-radioButton>
                         <label for="gender1">Male</label>
                     </div>
                     <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="gender2" name="gender" value="F" formControlName="radioButtonGender" >
+                        <p-radioButton id="gender2" name="gender" value="F" [(ngModel)]="radioButtonGender">
                         </p-radioButton>
                         <label for="gender2">Female</label>
                     </div>
@@ -121,15 +121,15 @@
                 <label class="p-mb-3">OT</label>
                 <div class="p-formgrid p-grid">
                     <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="OT1" name="OT" value="Allow" formControlName="radioButtonOT"></p-radioButton>
+                        <p-radioButton id="OT1" name="OT" value="Allow" [(ngModel)]="radioButtonOT"></p-radioButton>
                         <label for="OT1">Allow</label>
                     </div>
                     <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="OT2" name="OT" value="Full" formControlName="radioButtonOT"></p-radioButton>
+                        <p-radioButton id="OT2" name="OT" value="Full" [(ngModel)]="radioButtonOT"></p-radioButton>
                         <label for="OT2">Full</label>
                     </div>
                     <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="OT3" name="OT" value="No" formControlName="radioButtonOT"></p-radioButton>
+                        <p-radioButton id="OT3" name="OT" value="No" [(ngModel)]="radioButtonOT"></p-radioButton>
                         <label for="OT3">No</label>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                 (click)="addEmployee()"></button>
         </ng-template>
     </p-dialog>
-</form>
+
 
 
 

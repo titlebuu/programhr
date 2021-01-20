@@ -22,14 +22,13 @@ export interface AddEmployee {
   providers: [ConfirmationService, MessageService]
 })
 export class EmployeeComponent implements OnInit {
-  formEmployee = new FormGroup({
-    emp_id: new FormControl(),
-    name: new FormControl(),
-    lastname: new FormControl(),
-    selectedDept: new FormControl(),
-    radioButtonGender: new FormControl(),
-    radioButtonOT: new FormControl()
-  });
+
+  emp_id: string;
+  name: string;
+  lastname: string;
+  selectedDept: any;
+  radioButtonGender: string;
+  radioButtonOT: string;
   dept: any[] = [
     { name: 'BDP', value: 'BDP' },
     { name: 'BP', value: 'BP' },
@@ -52,9 +51,6 @@ export class EmployeeComponent implements OnInit {
   submitted: boolean;
   data: any;
 
-
-
-
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -76,17 +72,17 @@ export class EmployeeComponent implements OnInit {
   async addEmployee(): Promise<any> {
     this.submitted = true;
     const form: any = {
-      ID_EMP: this.formEmployee.value.emp_id,
-      DEPT: this.formEmployee.value.selectedDept.value,
-      Gender: this.formEmployee.value.radioButtonGender.value,
-      Name: this.formEmployee.value.name,
-      Surname: this.formEmployee.value.lastname,
-      OT: this.formEmployee.value.radioButtonOT.value
+      ID_EMP: this.emp_id,
+      DEPT: this.selectedDept.value,
+      Gender: this.radioButtonGender,
+      Name: this.name,
+      Surname: this.lastname,
+      OT: this.radioButtonOT
     }
     this.data = await this.post('/api/employee', form);
     if (this.data.resultCode === 20000) {
       this.showSuccess()
-      this.formEmployee.reset()
+      this.clearEmployee()
     } else {
       this.showError()
     }
@@ -100,25 +96,19 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  // confirm1() {
-  //   this.confirmationService.confirm({
-  //     message: 'Are you sure that you want to proceed?',
-  //     header: 'Confirmation',
-  //     icon: 'pi pi-exclamation-triangle',
-  //     accept: () => {
-  //       this.addEmployee()
-  //     },
-  //     reject: () => {
-  //       this.rejected()
-  //     }
-  //   });
-  // }
+  clearEmployee() {
+    this.emp_id = '';
+    this.name = '';
+    this.lastname = '';
+    this.selectedDept = '';
+    this.radioButtonGender = '';
+    this.radioButtonOT = '';
+  }
 
   openNew() {
-    debugger
     this.submitted = false;
     this.employeeDialog = true;
-    this.formEmployee.reset()
+    this.clearEmployee()
   }
   hideDialog() {
     this.employeeDialog = false;
