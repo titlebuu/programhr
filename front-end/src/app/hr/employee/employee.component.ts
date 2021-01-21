@@ -3,18 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+import { AddEmployee } from '../employee/interface';
 
 // import { HttpService } from './../../hr/shared/http.service';
-
-export interface AddEmployee {
-  ID_EMP: string;
-  DEPT: string;
-  Gender: string;
-  Name: string;
-  Surname: string;
-  OT: string;
-
-}
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -45,6 +36,7 @@ export class EmployeeComponent implements OnInit {
     { name: 'PTF', value: 'PTF' }
   ];
   employeeDialog: boolean;
+  EditemployeeDialog: boolean;
   cols: any[];
   dataemp: AddEmployee[];
   selectedProducts: AddEmployee[];
@@ -71,21 +63,27 @@ export class EmployeeComponent implements OnInit {
 
   async addEmployee(): Promise<any> {
     this.submitted = true;
-    const form: any = {
-      ID_EMP: this.emp_id,
-      DEPT: this.selectedDept.value,
-      Gender: this.radioButtonGender,
-      Name: this.name,
-      Surname: this.lastname,
-      OT: this.radioButtonOT
-    }
-    this.data = await this.post('/api/employee', form);
-    if (this.data.resultCode === 20000) {
-      this.showSuccess()
-      this.clearEmployee()
+    if (this.emp_id != '') {
+      const form: any = {
+        ID_EMP: this.emp_id,
+        DEPT: this.selectedDept.value,
+        Gender: this.radioButtonGender,
+        Name: this.name,
+        Surname: this.lastname,
+        OT: this.radioButtonOT
+      }
+      this.data = await this.post('/api/employee', form);
+      if (this.data.resultCode === 20000) {
+        this.showSuccess()
+        this.employeeDialog = false;
+        this.listemp()
+      } else {
+        this.showError()
+      }
     } else {
-      this.showError()
+      'required'
     }
+
   }
 
   post(url, body?): Promise<any> {
@@ -109,6 +107,9 @@ export class EmployeeComponent implements OnInit {
     this.submitted = false;
     this.employeeDialog = true;
     this.clearEmployee()
+  }
+  editEmployee() {
+    this.EditemployeeDialog = true;
   }
   hideDialog() {
     this.employeeDialog = false;
