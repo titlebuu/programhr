@@ -18,6 +18,17 @@ export default class Handler {
     public getemployee = async (req: Request, res: Response) => {
         const response2 = await this.service.getAll();
         res.status(200).send(response2);
-      }
+    }
     // (req.query.date1,req.query.date2)
+
+    public putemployee = async (req: Request, res: Response) => {
+        try {
+            const params: AddEmployee['ID_EMP'] = req.params;
+            const body: AddEmployee = req.body;
+            const response = await this.service.putemployee(params, body)
+            res.status(200).send({ success: response });
+        } catch (error) {
+
+        }
+    }
 }

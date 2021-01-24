@@ -30,4 +30,18 @@ export default class Service {
     public getAll = async () => {
         return await this.serviceMssql.query(`SELECT ID_EMP, DEPT, Gender, Name, Surname, OT FROM EmployeeTable ORDER BY ID_EMP`);
     }
+
+    public putemployee = async (params: AddEmployee['ID_EMP'], empUpdate: AddEmployee)=>{
+        debugger
+        try {
+            this.serviceMssql.query(`UPDATE EmployeeTable SET DEPT ='${empUpdate.DEPT}',Gender ='${empUpdate.Gender}',Name ='${empUpdate.Name}',Surname ='${empUpdate.Surname}',OT ='${empUpdate.OT}'
+            Where ID_EMP = '${params}'`);
+            return ({
+                resultCode: 20000,
+                message: 'Success'
+            })
+        } catch (error) {
+            
+        }
+    }
 }

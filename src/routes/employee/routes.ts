@@ -14,6 +14,10 @@ export class RouteEmployee {
         this.router.get('/api/employee', (req: Request, res: Response) => {
             this.handler.getemployee(req, res);
         });
+
+        this.router.put('/api/employee/:ID_EMP', (req: Request, res: Response) => {
+            this.handler.putemployee(req, res);
+        });
     }
 }
 

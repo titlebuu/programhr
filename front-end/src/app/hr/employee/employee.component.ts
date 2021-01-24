@@ -4,8 +4,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { AddEmployee } from '../employee/interface';
+import { values } from 'lodash';
 
 // import { HttpService } from './../../hr/shared/http.service';
+
+interface Test {
+  name?: string,
+  value: string
+}
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -17,7 +23,7 @@ export class EmployeeComponent implements OnInit {
   emp_id: string;
   name: string;
   lastname: string;
-  selectedDept: any;
+  selectedDept: Test = { name: '', value: '' }
   radioButtonGender: string;
   radioButtonOT: string;
   dept: any[] = [
@@ -39,7 +45,6 @@ export class EmployeeComponent implements OnInit {
   EditemployeeDialog: boolean;
   cols: any[];
   dataemp: AddEmployee[];
-  selectedProducts: AddEmployee[];
   submitted: boolean;
   data: any;
 
@@ -94,11 +99,32 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  async EditEmployee(): Promise<any> {
+    debugger
+    const formEdit: any = {
+      ID_EMP: this.emp_id,
+      DEPT: this.selectedDept.value,
+      Gender: this.radioButtonGender,
+      Name: this.name,
+      Surname: this.lastname,
+      OT: this.radioButtonOT
+    }
+    this.data = await this.put(`/api/employee/${this.emp_id}`, formEdit);
+  }
+
+  put(url, body?): Promise<any>{
+    return this.http.put(url, body).toPromise().then(response => {
+      return response;
+    }).catch((err) => {
+      throw err;
+    });
+  }
+
   clearEmployee() {
     this.emp_id = '';
     this.name = '';
     this.lastname = '';
-    this.selectedDept = '';
+    this.selectedDept.value = '';
     this.radioButtonGender = '';
     this.radioButtonOT = '';
   }
@@ -108,11 +134,21 @@ export class EmployeeComponent implements OnInit {
     this.employeeDialog = true;
     this.clearEmployee()
   }
-  editEmployee() {
+  editEmployee(i: AddEmployee) {
     this.EditemployeeDialog = true;
+    this.emp_id = i.ID_EMP;
+    this.name = i.Name;
+    this.lastname = i.Surname;
+    this.selectedDept = this.dept.find(ele => ele.value === i.DEPT);
+    this.radioButtonGender = i.Gender;
+    this.radioButtonOT = i.OT;
   }
   hideDialog() {
     this.employeeDialog = false;
+    this.submitted = false;
+  }
+  hideDialogEdit() {
+    this.EditemployeeDialog = false;
     this.submitted = false;
   }
 
