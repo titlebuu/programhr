@@ -23,7 +23,7 @@ export default class Handler {
 
     public putemployee = async (req: Request, res: Response) => {
         try {
-            const params: AddEmployee['ID_EMP'] = req.params;
+            const params: AddEmployee['ID_EMP'] = req.params.ID_EMP;
             const body: AddEmployee = req.body;
             const response = await this.service.putemployee(params, body)
             res.status(200).send({ success: response });

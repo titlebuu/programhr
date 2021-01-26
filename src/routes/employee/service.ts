@@ -31,8 +31,7 @@ export default class Service {
         return await this.serviceMssql.query(`SELECT ID_EMP, DEPT, Gender, Name, Surname, OT FROM EmployeeTable ORDER BY ID_EMP`);
     }
 
-    public putemployee = async (params: AddEmployee['ID_EMP'], empUpdate: AddEmployee)=>{
-        debugger
+    public putemployee = async (params: AddEmployee['ID_EMP'], empUpdate: AddEmployee) => {
         try {
             this.serviceMssql.query(`UPDATE EmployeeTable SET DEPT ='${empUpdate.DEPT}',Gender ='${empUpdate.Gender}',Name ='${empUpdate.Name}',Surname ='${empUpdate.Surname}',OT ='${empUpdate.OT}'
             Where ID_EMP = '${params}'`);
@@ -41,7 +40,7 @@ export default class Service {
                 message: 'Success'
             })
         } catch (error) {
-            
+            throw error;
         }
     }
 }
