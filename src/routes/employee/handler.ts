@@ -26,7 +26,17 @@ export default class Handler {
             const params: AddEmployee['ID_EMP'] = req.params.ID_EMP;
             const body: AddEmployee = req.body;
             const response = await this.service.putemployee(params, body)
-            res.status(200).send({ success: response });
+            res.status(200).send(response);
+        } catch (error) {
+
+        }
+    }
+
+    public deleteemployee = async (req: Request, res: Response) => {
+        try {
+            const params: AddEmployee['ID_EMP'] = req.params.ID_EMP;
+            const response = await this.service.deleteemployee(params)
+            res.status(200).send(response);
         } catch (error) {
 
         }

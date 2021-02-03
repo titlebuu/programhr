@@ -11,18 +11,19 @@
                 <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
                     (click)="openNew()"></button>
                 <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger"
-                    (click)="deleteSelectedProducts()"
-                    [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                    (click)="deleteSelectedEmployee()"
+                    [disabled]="!selectedEmployee || !selectedEmployee.length"></button>
             </ng-template>
         </p-toolbar>
         <p-table *ngIf="dataemp && dataemp.length > 0" #dt [value]="dataemp" [columns]="cols" [rows]="20"
             [paginator]="true" [globalFilterFields]="['ID_EMP','Name','Surname','DEPT','Gender','OT']"
-            [(selection)]="selectedProducts" [rowHover]="true" dataKey="ID_EMP"
+            [(selection)]="selectedEmployee" [rowHover]="true" dataKey="ID_EMP"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [showCurrentPageReport]="true">
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-ai-center p-jc-between">
                     <h5 class="p-m-0">Manage Employee</h5>
+                    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
                     <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
@@ -63,9 +64,9 @@
                     <td>{{item.OT}}</td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                            (click)="editEmployee(item)"></button>
+                            (click)="editEmployee(item)"></button>      
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                            (click)="deleteProduct(product)"></button>
+                            (click)="deleteEmployee(item)"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -79,77 +80,75 @@
 </div>
 
 
-    <p-dialog [(visible)]="employeeDialog" [style]="{width: '450px'}" header="Employee Details" [modal]="true"
-        styleClass="p-fluid">
-        <ng-template pTemplate="content">
-            <div class="p-field">
-                <label for="emp_id">ID Employee</label>
-                <input type="text" pInputText id="emp_id" [(ngModel)]="emp_id" required autofocus />
-                <small class="p-invalid" *ngIf="submitted && !emp_id">ID is required.</small>
-            </div>
-            <div class="p-formgrid p-grid">
-                <div class="p-field p-col">
-                    <label for="name">Firstname</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="name" />
-                </div>
-                <div class="p-field p-col">
-                    <label for="lastname">Lastname</label>
-                    <input type="text" pInputText id="lastname" [(ngModel)]="lastname" />
-                </div>
-            </div>
-            <div class="p-field">
-                <label for="department">Department</label>
-                <p-dropdown inputId="department" [options]="dept" [(ngModel)]="selectedDept" placeholder="Select"
-                    optionLabel="name"></p-dropdown>
-            </div>
-            <div class="p-field">
-                <label class="p-mb-3">Gender</label>
-                <div class="p-formgrid p-grid">
-                    <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="gender1" name="gender" value="M" [(ngModel)]="radioButtonGender">
-                        </p-radioButton>
-                        <label for="gender1">Male</label>
-                    </div>
-                    <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="gender2" name="gender" value="F" [(ngModel)]="radioButtonGender">
-                        </p-radioButton>
-                        <label for="gender2">Female</label>
-                    </div>
-                </div>
-            </div>
-            <div class="p-field">
-                <label class="p-mb-3">OT</label>
-                <div class="p-formgrid p-grid">
-                    <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="OT1" name="OT" value="Allow" [(ngModel)]="radioButtonOT"></p-radioButton>
-                        <label for="OT1">Allow</label>
-                    </div>
-                    <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="OT2" name="OT" value="Full" [(ngModel)]="radioButtonOT"></p-radioButton>
-                        <label for="OT2">Full</label>
-                    </div>
-                    <div class="p-field-radiobutton p-col-4">
-                        <p-radioButton id="OT3" name="OT" value="No" [(ngModel)]="radioButtonOT"></p-radioButton>
-                        <label for="OT3">No</label>
-                    </div>
-                </div>
-            </div>
-
-        </ng-template>
-        <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-                (click)="hideDialog()"></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-                (click)="addEmployee()"></button>
-        </ng-template>
-    </p-dialog>
-
-    <p-dialog [(visible)]="EditemployeeDialog" [style]="{width: '450px'}" header="EditEmployee Details" [modal]="true"
+<p-dialog [(visible)]="employeeDialog" [style]="{width: '450px'}" header="Employee Details" [modal]="true"
     styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="emp_id">ID Employee</label>
-            <input type="text" pInputText [disabled]="emp_id" [(ngModel)]="emp_id"/>
+            <input type="text" pInputText id="emp_id" [(ngModel)]="emp_id" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !emp_id">ID is required.</small>
+        </div>
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="name">Firstname</label>
+                <input type="text" pInputText id="name" [(ngModel)]="name" />
+            </div>
+            <div class="p-field p-col">
+                <label for="lastname">Lastname</label>
+                <input type="text" pInputText id="lastname" [(ngModel)]="lastname" />
+            </div>
+        </div>
+        <div class="p-field">
+            <label for="department">Department</label>
+            <p-dropdown inputId="department" [options]="dept" [(ngModel)]="selectedDept" placeholder="Select"
+                optionLabel="name"></p-dropdown>
+        </div>
+        <div class="p-field">
+            <label class="p-mb-3">Gender</label>
+            <div class="p-formgrid p-grid">
+                <div class="p-field-radiobutton p-col-4">
+                    <p-radioButton id="gender1" name="gender" value="M" [(ngModel)]="radioButtonGender">
+                    </p-radioButton>
+                    <label for="gender1">Male</label>
+                </div>
+                <div class="p-field-radiobutton p-col-4">
+                    <p-radioButton id="gender2" name="gender" value="F" [(ngModel)]="radioButtonGender">
+                    </p-radioButton>
+                    <label for="gender2">Female</label>
+                </div>
+            </div>
+        </div>
+        <div class="p-field">
+            <label class="p-mb-3">OT</label>
+            <div class="p-formgrid p-grid">
+                <div class="p-field-radiobutton p-col-4">
+                    <p-radioButton id="OT1" name="OT" value="Allow" [(ngModel)]="radioButtonOT"></p-radioButton>
+                    <label for="OT1">Allow</label>
+                </div>
+                <div class="p-field-radiobutton p-col-4">
+                    <p-radioButton id="OT2" name="OT" value="Full" [(ngModel)]="radioButtonOT"></p-radioButton>
+                    <label for="OT2">Full</label>
+                </div>
+                <div class="p-field-radiobutton p-col-4">
+                    <p-radioButton id="OT3" name="OT" value="No" [(ngModel)]="radioButtonOT"></p-radioButton>
+                    <label for="OT3">No</label>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addEmployee()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="EditemployeeDialog" [style]="{width: '450px'}" header="EditEmployee Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="emp_id">ID Employee</label>
+            <input type="text" pInputText [disabled]="emp_id" [(ngModel)]="emp_id" />
         </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
@@ -203,7 +202,6 @@
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
             (click)="hideDialogEdit()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-            (click)="EditEmployee()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="EditEmployee()"></button>
     </ng-template>
 </p-dialog>

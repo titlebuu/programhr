@@ -43,4 +43,16 @@ export default class Service {
             throw error;
         }
     }
+
+    public deleteemployee = async (params: AddEmployee['ID_EMP']) => {
+        try {
+            this.serviceMssql.query(`DELETE FROM Employeetable Where ID_EMP = '${params}'`);
+            return ({
+                resultCode: 20000,
+                message: 'Delete Success'
+            })
+        } catch (error) {
+            throw error;
+        }
+    }
 }

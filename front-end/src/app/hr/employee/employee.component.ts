@@ -48,7 +48,7 @@ export class EmployeeComponent implements OnInit {
   submitted: boolean;
   data: any;
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor(private http: HttpClient, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.listemp()
@@ -100,7 +100,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   async EditEmployee(): Promise<any> {
-    debugger
     const formEdit: any = {
       ID_EMP: this.emp_id,
       DEPT: this.selectedDept.value,
@@ -110,10 +109,35 @@ export class EmployeeComponent implements OnInit {
       OT: this.radioButtonOT
     }
     this.data = await this.put(`/api/employee/${this.emp_id}`, formEdit);
+    if (this.data.resultCode === 20000) {
+      this.showSuccess()
+      this.EditemployeeDialog = false;
+      this.listemp()
+    } else {
+      this.showError()
+    }
   }
 
-  put(url, body?): Promise<any>{
+  put(url, body?): Promise<any> {
     return this.http.put(url, body).toPromise().then(response => {
+      return response;
+    }).catch((err) => {
+      throw err;
+    });
+  }
+
+  async DeleteEmployee(i: AddEmployee): Promise<any> {
+    this.data = await this.delete(`/api/employee/${i.ID_EMP}`);
+    if (this.data.resultCode === 20000) {
+      this.showSuccess()
+      this.listemp()
+    } else {
+      this.showError()
+    }
+  }
+
+  delete(url): Promise<any> {
+    return this.http.delete(url).toPromise().then(response => {
       return response;
     }).catch((err) => {
       throw err;
@@ -142,6 +166,19 @@ export class EmployeeComponent implements OnInit {
     this.selectedDept = this.dept.find(ele => ele.value === i.DEPT);
     this.radioButtonGender = i.Gender;
     this.radioButtonOT = i.OT;
+  }
+  deleteEmployee(i: AddEmployee) {
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.DeleteEmployee(i)
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'info', summary: 'Rejected', detail: 'You have rejected' });
+      }
+    });
   }
   hideDialog() {
     this.employeeDialog = false;

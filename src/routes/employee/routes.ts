@@ -18,6 +18,10 @@ export class RouteEmployee {
         this.router.put('/api/employee/:ID_EMP', (req: Request, res: Response) => {
             this.handler.putemployee(req, res);
         });
+
+        this.router.delete('/api/employee/:ID_EMP', (req: Request, res: Response) => {
+            this.handler.deleteemployee(req, res);
+        });
     }
 }
 
