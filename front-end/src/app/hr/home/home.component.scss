@@ -6,6 +6,7 @@
     border-radius: 10px;
     text-align: center;
     margin-top: 2rem;
+    cursor: pointer;
 }
 .box1:hover{
   background-color: #0075f1;
@@ -18,6 +19,7 @@
   border-radius: 10px;
   text-align: center;
   margin-top: 2rem;
+  cursor: pointer;
 }
 .box2:hover{
   background-color:#169baf;
@@ -30,9 +32,23 @@
   border-radius: 10px;
   text-align: center;
   margin-top: 2rem;
+  cursor: pointer;
 }
 .box3:hover{
   background-color:  #f3b600;
+}
+.box4{
+  min-width: 100%;
+  min-height: 184px;
+  color: #fff;
+  background-color: #ae00ff;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+.box4:hover{
+background-color: #a000eb;
 }
 .bg-allbox{
   border: 1px solid #dee2e6;

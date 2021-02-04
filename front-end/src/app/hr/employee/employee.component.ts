@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
@@ -48,12 +49,14 @@ export class EmployeeComponent implements OnInit {
   submitted: boolean;
   data: any;
 
-  constructor(private http: HttpClient, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private http: HttpClient, private messageService: MessageService, private confirmationService: ConfirmationService,private router: Router) { }
 
   ngOnInit(): void {
     this.listemp()
   }
-
+  home() {
+    this.router.navigate([``]);
+  }
   async listemp(): Promise<any> {
     this.dataemp = await this.query('/api/employee');
   }
@@ -169,8 +172,8 @@ export class EmployeeComponent implements OnInit {
   }
   deleteEmployee(i: AddEmployee) {
     this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
+      message: 'Do you want to delete ' + i.Name + ' ' + i.Surname + ' ?',
+      header: 'Delete Employee',
       icon: 'pi pi-info-circle',
       accept: () => {
         this.DeleteEmployee(i)

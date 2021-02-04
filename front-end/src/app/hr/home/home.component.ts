@@ -13,12 +13,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   exportform() {
     this.router.navigate([`export`]);
   }
 
   addemployee() {
     this.router.navigate([`addemp`]);
+  }
+
+  addcode() {
+    this.router.navigate([`addcode`]);
   }
 }

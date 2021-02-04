@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <div class="p-grid">
     <div class="p-col-12 header">
-        <img src="assets/logo/rotarylogo.jpg" alt="trellogo" class="logo-harder">
+        <img src="assets/logo/rotarylogo.jpg" alt="trellogo" class="logo-harder" (click)="home()">
     </div>
 </div>
 <div class="p-grid">
@@ -10,9 +10,9 @@
             <ng-template pTemplate="left">
                 <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
                     (click)="openNew()"></button>
-                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger"
+                <!-- <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger"
                     (click)="deleteSelectedEmployee()"
-                    [disabled]="!selectedEmployee || !selectedEmployee.length"></button>
+                    [disabled]="!selectedEmployee || !selectedEmployee.length"></button> -->
             </ng-template>
         </p-toolbar>
         <p-table *ngIf="dataemp && dataemp.length > 0" #dt [value]="dataemp" [columns]="cols" [rows]="20"
@@ -54,7 +54,7 @@
             <ng-template pTemplate="body" let-item let-columns="columns">
                 <tr [pSelectableRow]="item">
                     <td>
-                        <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                        <!-- <p-tableCheckbox [value]="item"></p-tableCheckbox> -->
                     </td>
                     <td>{{item.ID_EMP}}</td>
                     <td>{{item.Name}}</td>
@@ -64,7 +64,7 @@
                     <td>{{item.OT}}</td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                            (click)="editEmployee(item)"></button>      
+                            (click)="editEmployee(item)"></button>
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                             (click)="deleteEmployee(item)"></button>
                     </td>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ExcelService } from './excel.service' //เพิ่ม
 import * as FileSaver from 'file-saver'; //เพิ่ม
@@ -20,7 +21,7 @@ export class ExportComponent implements OnInit {
   data: any;
   cols: any[];
   // exportColumns: any[];
-  constructor(private http: HttpClient, _excelService: ExcelService) { }
+  constructor(private http: HttpClient, _excelService: ExcelService, private router: Router) { }
 
   ngOnInit(): void {
     this.cols = [
@@ -88,6 +89,10 @@ export class ExportComponent implements OnInit {
     } else {
       return false
     }
+  }
+
+  home() {
+    this.router.navigate([``]);
   }
 
   //   exportPdf() {

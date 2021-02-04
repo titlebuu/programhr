@@ -25,6 +25,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { AddcodeComponent } from './hr/addcode/addcode.component';
 
 
 
@@ -34,7 +35,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     FormatdatePipe,
     ExportComponent,
     EmployeeComponent,
-    HomeComponent
+    HomeComponent,
+    AddcodeComponent
   ],
   imports: [
     BrowserModule,
