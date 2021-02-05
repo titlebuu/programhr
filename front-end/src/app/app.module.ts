@@ -17,6 +17,7 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ExportComponent } from './hr/export/export.component';
 import { EmployeeComponent } from './hr/employee/employee.component';
+import { AddcodeComponent } from './hr/addcode/addcode.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
@@ -25,7 +26,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { AddcodeComponent } from './hr/addcode/addcode.component';
+
 
 
 
