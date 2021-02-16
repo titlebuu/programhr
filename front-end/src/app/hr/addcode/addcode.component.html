@@ -8,9 +8,9 @@
     <div class="p-col-12 ">
         <p-toolbar styleClass="p-mb-4">
             <ng-template pTemplate="left">
-                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
+                <p-fileUpload mode="basic" accept=".xlsx, .xls" [maxFileSize]="1000000" label="Import"
+                    chooseLabel="Import" class="p-mr-2 p-d-inline-block" (change)="onFileChange($event)"></p-fileUpload>
             </ng-template>
         </p-toolbar>
     </div>
 </div>
-
