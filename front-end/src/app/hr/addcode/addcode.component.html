@@ -8,12 +8,14 @@
     <div class="p-col-12 ">
         <p-toolbar styleClass="p-mb-4">
             <ng-template pTemplate="left">
-                <p-fileUpload mode="basic" accept=".xlsx, .xls" [maxFileSize]="1000000" label="Import"
-                    chooseLabel="Import" class="p-mr-2 p-d-inline-block" (change)="onFileChange($event)"></p-fileUpload>
+                <!-- <input type="file" (change)="onFileChange($event)" multiple="false" /> -->
+                <!-- <p-fileUpload mode="basic" name="data[]" accept=".xlsx, .xls" [maxFileSize]="1000000" label="Import"
+                    chooseLabel="Import" class="p-mr-2 p-d-inline-block" (onUpload)="onFileChange($event)"></p-fileUpload> -->
             </ng-template>
         </p-toolbar>
     </div>
 </div>
+<p-fileUpload type="file" (change)="onFileChange($event)" multiple="false"></p-fileUpload>
 <table class="sjs-table">
     <tbody>
   <tr *ngFor="let row of data">
