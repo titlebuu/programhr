@@ -42,6 +42,7 @@ export class AddcodeComponent implements OnInit {
       /* save data */
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
       console.log(this.data);
+      debugger
     };
     reader.readAsBinaryString(target.files[0]);
   }
