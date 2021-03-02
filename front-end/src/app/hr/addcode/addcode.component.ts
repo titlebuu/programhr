@@ -14,6 +14,8 @@ type AOA = any[][];
 })
 export class AddcodeComponent implements OnInit {
   data: AOA = [[], []];
+  table
+  column=[]
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -41,8 +43,11 @@ export class AddcodeComponent implements OnInit {
 
       /* save data */
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
-      console.log(this.data);
+      this.column = this.data[0]
       debugger
+
+      console.log(this.data);
+      
     };
     reader.readAsBinaryString(target.files[0]);
   }

@@ -14,16 +14,15 @@
         <p-table [value]="data">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Quantity</th>
+                    <th *ngFor="let columns of column">
+                        {{columns}}
+                    </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-product>
-                <tr *ngFor="let row of data">
-                    <td *ngFor="let val of row">
-                        {{val}}
+            <ng-template pTemplate="body" let-val let-rowIndex="rowIndex">
+                <tr *ngIf="rowIndex > 0">
+                    <td *ngFor="let item of val">
+                        {{item}}
                     </td>
                 </tr>
             </ng-template>
@@ -31,27 +30,3 @@
 
     </div>
 </div>
-
-
-<!-- <table class="sjs-table">
-
-    <tbody>
-  <tr *ngFor="let row of data">
-        <td *ngFor="let val of row">
-            {{val}}
-        </td>
-    </tr>
-</tbody>
-</table> -->
-
-<!-- <div class="p-grid">
-    <div class="p-col-12 p-md-12 p-lg-12 p-xl-12">
-            <ng-template pTemplate="header" let-columns>
-                <tr *ngFor="let row of data">
-                    <td *ngFor="let val of row">
-                        {{val}}
-                    </td>
-                </tr>
-            </ng-template>
-    </div>
-</div> -->
